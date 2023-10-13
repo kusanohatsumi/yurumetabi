@@ -17,37 +17,84 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <header className="w-full h-14 flex justify-between border items-center">
-          <a className="h-full text-center border flex-1 " href="/">
-            menu
+        <header className="w-full h-14 flex justify-between  items-center bg-gray-400">
+          <a
+            className="border-r text-center flex justify-around box-border p-3 items-center flex-1 "
+            href="/"
+          >
+            <img
+              className="m-2
+            "
+              alt="シェア"
+              src="https://placehold.jp/35x35.png"
+            />
+            <p>menu</p>
           </a>
-          <a className="text-center border flex-1" href="/about">
-            menu
+          <a
+            className="border-r text-center flex justify-around box-border p-3 items-center flex-1"
+            href="/about"
+          >
+            <img
+              className="m-2
+            "
+              alt="シェア"
+              src="https://placehold.jp/35x35.png"
+            />
+            <p>detour</p>
           </a>
-          <a className="text-center border flex-1" href="/about">
-            menu
+          <a
+            className=" text-center flex justify-around box-border p-3 items-center flex-1"
+            href="/about"
+          >
+            <img
+              className="m-2
+            "
+              alt="シェア"
+              src="https://placehold.jp/35x35.png"
+            />
           </a>
         </header>
         <main>
           {children}
-          <div className="w-full flex text-xs h-16 absolute bottom-0 bg-gray-400">
+          <div className="w-full flex justify-center items-end text-xs h-16 absolute bottom-16 bg-gray-400">
             <a
-              className="flex items-center flex-col justify-center text-center border flex-1 "
+              className="flex  items-center flex-col justify-center text-center  flex-1 "
               href="/#"
             >
-              <img alt="現在地" src="https://placehold.jp/30x30.png" />
+              <img
+                className="m-1"
+                alt="現在地"
+                src="https://placehold.jp/30x30.png"
+              />
               <p> 現在地</p>
             </a>
-            <a className="text-center border flex-1 " href="/#">
-              <img alt="検索" src="https://placehold.jp/30x30.png" />
-              <p>検索</p>
+            <a
+              className="w-24 h-24 bg-slate-500 rounded-full  flex  items-center flex-col justify-center text-center   before:content-['']"
+              href="/#"
+            >
+              <img
+                className="m-1"
+                alt="検索"
+                src="https://placehold.jp/45x45.png"
+              />
             </a>
-            <a className="text-center border flex-1 " href="/#">
-              <img alt="スケジュール" src="https://placehold.jp/30x30.png" />
+            <a
+              className="flex  items-center flex-col justify-center text-center  flex-1 "
+              href="/#"
+            >
+              <img
+                className="m-1"
+                alt="スケジュール"
+                src="https://placehold.jp/30x30.png"
+              />
               <p> スケジュール</p>
             </a>
           </div>
         </main>
+        {/* 広告 */}
+        <div className="w-full h-16 bg-slate-200 text-center absolute bottom-0">
+          PR
+        </div>
       </body>
     </html>
   );
