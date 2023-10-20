@@ -64,7 +64,7 @@ export default function RootLayout({
             />
           </a>
         </header>
-        <main>
+        <main className="h-4/5">
           {children}
           <div
             className="w-full flex justify-center items-end text-xs h-16 absolute bottom-16 "
