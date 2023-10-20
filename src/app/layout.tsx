@@ -1,6 +1,8 @@
+import { main, searchBtn } from "@/style/color";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,28 +19,35 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <header className="w-full h-14 flex justify-between  items-center bg-gray-400">
+        <header
+          className="w-full h-24 flex justify-between  items-cente"
+          style={{ backgroundColor: main }}
+        >
           <a
+            style={{ borderRight: "1px solid #333" }}
             className="border-r text-center flex justify-around box-border p-3 items-center flex-1 "
             href="/"
           >
-            <img
-              className="m-2
-            "
+            <Image
               alt="シェア"
-              src="https://placehold.jp/35x35.png"
+              src="/image/camera.svg"
+              width={35}
+              height={35}
+              className="m-2"
             />
-            <p>menu</p>
+            <p>share</p>
           </a>
           <a
+            style={{ borderRight: "1px solid #333" }}
             className="border-r text-center flex justify-around box-border p-3 items-center flex-1"
             href="/about"
           >
-            <img
-              className="m-2
-            "
-              alt="シェア"
-              src="https://placehold.jp/35x35.png"
+            <Image
+              alt="遠回り"
+              src="/image/root.svg"
+              width={35}
+              height={35}
+              className="m-2"
             />
             <p>detour</p>
           </a>
@@ -46,46 +55,57 @@ export default function RootLayout({
             className=" text-center flex justify-around box-border p-3 items-center flex-1"
             href="/about"
           >
-            <img
-              className="m-2
-            "
-              alt="シェア"
-              src="https://placehold.jp/35x35.png"
+            <Image
+              alt="方向"
+              src="/image/direction.svg"
+              width={35}
+              height={35}
+              className="m-2"
             />
           </a>
         </header>
-        <main>
+        <main className="h-full">
           {children}
-          <div className="w-full flex justify-center items-end text-xs h-16 absolute bottom-16 bg-gray-400">
+          <div
+            className="w-full flex justify-center items-end text-xs h-16 absolute bottom-16 "
+            style={{ backgroundColor: main }}
+          >
             <a
               className="flex  items-center flex-col justify-center text-center  flex-1 "
               href="/#"
             >
-              <img
-                className="m-1"
+              <Image
                 alt="現在地"
-                src="https://placehold.jp/30x30.png"
+                src="/image/now.svg"
+                width={30}
+                height={30}
+                className="m-1"
               />
               <p> 現在地</p>
             </a>
             <a
-              className="w-24 h-24 bg-slate-500 rounded-full  flex  items-center flex-col justify-center text-center   before:content-['']"
+              className="w-24 h-24  rounded-full  flex  items-center flex-col justify-center text-center   before:content-[''] "
+              style={{ backgroundColor: searchBtn }}
               href="/#"
             >
-              <img
-                className="m-1"
+              <Image
                 alt="検索"
-                src="https://placehold.jp/45x45.png"
+                src="/image/search.svg"
+                width={42}
+                height={42}
+                className="m-1"
               />
             </a>
             <a
               className="flex  items-center flex-col justify-center text-center  flex-1 "
               href="/#"
             >
-              <img
-                className="m-1"
+              <Image
                 alt="スケジュール"
-                src="https://placehold.jp/30x30.png"
+                src="/image/schedule.svg"
+                width={30}
+                height={30}
+                className="m-1"
               />
               <p> スケジュール</p>
             </a>
