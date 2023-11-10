@@ -64,6 +64,12 @@ export default function RootLayout({
             />
           </a>
         </header>
+        <div
+          className="w-full h-10 leading-10 text-center text-zinc-400"
+          style={{ backgroundColor: searchBtn }}
+        >
+          目的地が設定されていません
+        </div>
         <main>
           {children}
           <div
