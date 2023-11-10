@@ -18,3 +18,15 @@ a {
   height: 100%;
   display: block;
 }
+.text{
+  border: #000 1px solid;
+  border-radius: 15px;
+}
+
+.btn{
+  width: 200px;
+  height: 50px;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+}
