@@ -1,3 +1,7 @@
 export default function Home() {
-  return <>ここにGoogleMapを描画</>;
+  return (
+    <>
+      <h1>ここにGoogleMapを描画</h1>
+    </>
+  );
 }
