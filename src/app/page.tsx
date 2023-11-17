@@ -1,3 +1,7 @@
+import CameraScreen from "@/feature/CameraScreen";
+
 export default function Home() {
-  return <>ここにGoogleMapを描画</>;
+  return <>
+  <CameraScreen />
+  </>;
 }
