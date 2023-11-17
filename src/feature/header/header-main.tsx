@@ -1,7 +1,7 @@
 import { main, searchBtn } from "@/style/color";
 import Image from "next/image";
 
-export default function Header() {
+export default function Header_main() {
   return (
     <header
       className="w-full h-24 flex justify-between  items-cente"
