@@ -1,2 +1,2 @@
-export const main: string = "#F1ECC3";
-export const searchBtn: string = "#DEC89F";
+export const main: string = "#F4DCB3";
+export const sub: string = "#E5B65A";
