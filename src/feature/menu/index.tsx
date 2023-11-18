@@ -1,28 +1,28 @@
-import { main, searchBtn } from "@/style/color";
+import { main, sub } from "@/style/color";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Menu() {
   return (
     <div
-      className="w-full flex justify-center items-end text-xs h-16 absolute bottom-16 "
-      style={{ backgroundColor: main }}
+      className="w-full flex gap-14 justify-center items-end text-xs h-16 absolute bottom-16 rounded-t-lg"
+      style={{ backgroundColor: sub }}
     >
-      <a
-        className="flex  items-center flex-col justify-center text-center  flex-1 "
+      <Link
+        className="h-full flex flex-col justify-center items-center relative after:content-['share'] after:absolute after:bottom-1 after:text-2xl after:text-white"
         href="/#"
       >
         <Image
-          alt="現在地"
-          src="/image/now.svg"
-          width={30}
-          height={30}
+          alt="カメラアイコン"
+          src="/image/camera.svg"
+          width={34}
+          height={34}
           className="m-1"
         />
-        <p> 現在地</p>
-      </a>
-      <a
-        className="w-24 h-24  rounded-full  flex  items-center flex-col justify-center text-center   before:content-[''] "
-        style={{ backgroundColor: searchBtn }}
+      </Link>
+      <Link
+        className="w-24 h-24 rounded-full relative flex  items-center flex-col justify-center text-center shadow-sm  shadow-slate-700  before:content-[''] after:content-['seach'] after:absolute after:bottom-1 after:text-2xl after:text-white"
+        style={{ backgroundColor: sub }}
         href="/#"
       >
         <Image
@@ -32,20 +32,19 @@ export default function Menu() {
           height={42}
           className="m-1"
         />
-      </a>
-      <a
-        className="flex  items-center flex-col justify-center text-center  flex-1 "
+      </Link>
+      <Link
+        className="h-full flex flex-col justify-center items-center relative after:content-['account'] after:absolute after:bottom-1 after:text-2xl after:text-white"
         href="/#"
       >
         <Image
-          alt="スケジュール"
-          src="/image/schedule.svg"
-          width={30}
-          height={30}
+          alt="人のシルエットアイコン"
+          src="/image/account.svg"
+          width={34}
+          height={34}
           className="m-1"
         />
-        <p> スケジュール</p>
-      </a>
+      </Link>
     </div>
   );
 }
