@@ -1,4 +1,4 @@
-import { main, searchBtn } from "@/style/color";
+import { main } from "@/style/color";
 import Image from "next/image";
 
 export default function Header() {
