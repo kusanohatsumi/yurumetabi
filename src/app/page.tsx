@@ -4,8 +4,8 @@ import { db } from "@/firebase/firebase";
 import { log } from "console";
 
 export default async function Home() {
-  // const docRef = collection(db, "sunahara");
-  const docSnap = await getDocs(collection(db, "sunahara"));
+  const docRef = collection(db, "sunahara");
+  const docSnap = await getDocs(docRef);
 
   // const q = query(doc(db, "sunahara"));
   // const querySnapshot = await getDocs(q);
@@ -14,8 +14,11 @@ export default async function Home() {
   //   console.log(doc.id, " => ", doc.data());
   // });
 
-  let data = docSnap.data();
-  console.log(data.name);
+  let data = docSnap;
+  // console.log(data);
+  data.forEach((doc) => {
+    console.log(doc.id, doc.data());
+  })
 
   // console.log(data.state);
 
@@ -43,9 +46,16 @@ export default async function Home() {
   return (
     <>
       <h1>Hello World</h1>
-      <p className="country">国{data.country}</p>
-      <p className="state">州{data.state}</p>
-      <p className="name">市{data.name}</p>
+      {data.forEach((doc) => {
+        <div>
+          <p>aaaaa</p>
+          <p>{doc.id}</p>
+          <p className="country">国{doc.data().country}</p>
+          <p className="state">州{doc.data().state}</p>
+          <p className="name">市{doc.data().name}</p>
+        </div>
+      })
+      }
     </>
   );
 }
