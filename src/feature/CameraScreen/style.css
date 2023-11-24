@@ -9,8 +9,8 @@
 }
 .Camera{
     width: 100%;
-    height: 309px;
-    margin-top: 96px;
+    height: 50vh;
+    z-index: -100;
 }
 .footer{
     width: 100%;

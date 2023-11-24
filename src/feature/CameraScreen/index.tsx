@@ -22,9 +22,9 @@ export default function CameraScreen() {
             height={24}
         />
     </div>
-    <section>
-        <div >
-            <div className="Camera">
+    <section className="Camera">
+        <div>
+            <div>
             <Camera
             errorMessages={{
                 noCameraAccessible:
