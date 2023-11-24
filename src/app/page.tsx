@@ -1,11 +1,12 @@
 import Image from "next/image";
-import { doc, getDoc, setDoc, query } from "firebase/firestore";
+import { doc, getDoc, setDoc, query, collection, getDocs } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import { log } from "console";
 
 export default async function Home() {
-  const docRef = doc(db, "sunahara", "lU2b2zm8PHWcdN1XLCan");
-  const docSnap = await getDoc(docRef);
+  // const docRef = collection(db, "sunahara");
+  const docSnap = await getDocs(collection(db, "sunahara"));
+
   // const q = query(doc(db, "sunahara"));
   // const querySnapshot = await getDocs(q);
   // querySnapshot.forEach((doc) => {
@@ -14,6 +15,8 @@ export default async function Home() {
   // });
 
   let data = docSnap.data();
+  console.log(data.name);
+
   // console.log(data.state);
 
   await setDoc(doc(db, "sunahara", "new"), {
@@ -40,8 +43,9 @@ export default async function Home() {
   return (
     <>
       <h1>Hello World</h1>
-      <p className="country">国:</p>
-      <p className="state">州:</p>
+      <p className="country">国{data.country}</p>
+      <p className="state">州{data.state}</p>
+      <p className="name">市{data.name}</p>
     </>
   );
 }
