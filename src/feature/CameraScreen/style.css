@@ -1,0 +1,54 @@
+
+.flash{
+    width: 100%;
+    height: 40px;
+    background-color: #E5B65A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Camera{
+    width: 100%;
+    height: 309px;
+    margin-top: 96px;
+}
+.footer{
+    width: 100%;
+    height: 120px;
+    background-color: #FFEFD2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px 15px 0 0;
+}
+.footer > div{
+    display: flex;
+    position: relative;
+}
+.footer > div > img{
+    position: absolute;
+    top: 15px;
+    left: 310%;
+}
+.CameraBtn{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+}
+.CameraBtn::after{
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    border: 3px white solid;
+    border-radius: 50%;
+}
+.footer > p{
+    margin-top: 1em;
+}

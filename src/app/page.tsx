@@ -9,9 +9,7 @@ export default function Home() {
     <>
       <Header_main params="main" />
       <main>
-        ここに地図を描画する
         <CameraScreen />
-        <Menu />
       </main>
       <PR />
     </>
