@@ -14,50 +14,12 @@ export default function CameraScreen() {
 
     return (
     <>
-    <div className="flash">
-        <Image
-            src="/image/flash.svg"
-            alt="フラッシュ"
-            width={24}
-            height={24}
-        />
-    </div>
     <section className="Camera">
         <div>
-            <div>
-            <Camera
-            errorMessages={{
-                noCameraAccessible:
-                "No camera device accessible. Please connect your camera or try a different browser.",
-                permissionDenied:
-                "Permission denied. Please refresh and give camera permission.",
-                switchCamera:
-                "It is not possible to switch camera to different one because there is only one video device accessible.",
-                canvas: "Canvas is not supported.",
-            }}
-            ref={camera}
-            />
-            </div>
+            <input type="file" capture="environment" />
         </div>
     </section>
     <section className="footer">
-        <div>
-            <button
-                className="CameraBtn"
-                onClick={() => {
-                if (camera.current) {
-                    const photo = camera.current.takePhoto();
-                    setImage(photo);
-                }
-                }}>
-            </button>
-            <Image
-                src="/image/Replacement.svg"
-                alt="前後入れ替え"
-                width={24}
-                height={24}
-            />
-        </div>
         <p>おすすめスポットを共有しましょう</p>
     </section>
     </>
