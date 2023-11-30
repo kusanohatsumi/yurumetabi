@@ -1,13 +1,20 @@
 
+.box{
+    width: 100%;
+    height: 360px;
+    position: relative;
+    color: #FEFEFE;
+}
+
 .title{
     background-color: #C6A476;
-    color: #FEFEFE;
     width: 100%;
-    height: 90px;
+    height: 120px;
     border-radius: 15px 15px 0 0;
 }
 .title > p{
-    padding: 5px;
+    padding: 15px;
+    font-size: 14px;
 }
 .title > input{
     display: block;
@@ -20,9 +27,23 @@
 }
 
 .category{
+    position: absolute;
+    z-index: 10;
+    top: 105px;
     background-color: #E4C398;
     width: 100%;
-    height: 207px;
+    height: 217px;
+    border-radius: 15px 15px 0 0;
+}
+.place{
+    border-bottom: 1px solid #FEFEFE;
+    width: 90%;
+    height: 10px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+.category > p{
+    padding: 15px;
 }
 
 .confirmationBtn{
@@ -30,13 +51,20 @@
     width: 100%;
     height: 60px;
     font-size: 24px;
+    border-radius: 15px 15px 0 0;
+    position: absolute;
+    top: 280px;
+    z-index: 100;
 }
 .confirmationBtn > p{
     width: 72px;
     height: 32px;
-    margin: 0 auto;
+    margin: 15px auto 0;
     border-bottom: 2px solid #3F3F3F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.category a{
-    margin: 0 auto;
+.confirmationBtn > p > a{
+    color: #3F3F3F;
 }
