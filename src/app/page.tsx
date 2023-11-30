@@ -16,9 +16,9 @@ export default async function Home() {
 
   let data = docSnap;
   // console.log(data);
-  data.forEach((doc) => {
-    console.log(doc.id, doc.data());
-  })
+  // data.forEach((doc) => {
+  //   console.log(doc.id, doc.data());
+  // })
 
   // console.log(data.state);
 
@@ -48,14 +48,11 @@ export default async function Home() {
       <h1>Hello World</h1>
       {data.forEach((doc) => {
         <div>
-          <p>aaaaa</p>
-          <p>{doc.id}</p>
           <p className="country">国{doc.data().country}</p>
           <p className="state">州{doc.data().state}</p>
           <p className="name">市{doc.data().name}</p>
         </div>
-      })
-      }
+      })}
     </>
   );
 }
