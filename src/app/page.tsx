@@ -11,16 +11,13 @@ import styled from "styled-components";
 export default function Home() {
   return (
     <>
-      <Header_main params="main" />
       <main>
         <p className="inline-block">aaaa111</p>
         <CategoryBtn />
         ここに地図を描画する
         <TitleStyle />
         {/* <CameraScreen /> */}
-        <Menu />
       </main>
-      <PR />
     </>
   );
 }
