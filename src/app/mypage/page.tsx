@@ -14,9 +14,5 @@ export default function myPage() {
             <p>写真タイトル</p>
             <p>カテゴリー</p>
         </div>
-<<<<<<< HEAD
     </>)
 }
-=======
-    </>)
->>>>>>> 49269563c36ff333efb40c90407055e21ca53c53
