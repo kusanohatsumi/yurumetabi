@@ -17,7 +17,7 @@ export default function Home() {
         <CategoryBtn/>
 
         ここに地図を描画する
-        <TitleStyle></TitleStyle>
+        {/* <TitleStyle></TitleStyle> */}
         {/* <CameraScreen /> */}
         <Menu />
 

@@ -1,4 +1,5 @@
-"use client";
+// @jsxImportSource next/server
+// use client
 
 import React, { useState } from 'react';
 
@@ -11,12 +12,11 @@ export default function CategoryBtn(){
         border: '.5px solid #fefefe',
         borderRadius: '16px',
         paddingLeft: '8px',
-        paddingRight: '8px',
-        boxShadow: '0px 2px 15px -5px #777777',
+        paddingRight: '8px'
     }
 
     const handleClick = () => {
-        setColor('#A98C65', );
+        setColor('#A98C65');
     }
 
     return(
