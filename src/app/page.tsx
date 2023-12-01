@@ -1,5 +1,6 @@
 
 import CameraScreen from "@/feature/CameraScreen";
+import CategoryBtn from "@/feature/CategoryBtn";
 import Header_main from "@/feature/header";
 import Menu from "@/feature/menu";
 import PhotoConfirmation from "@/feature/PhotoConfirmation";
@@ -11,7 +12,7 @@ export default function Home() {
     <>
       <Header_main params="main" />
       <main>
-        <PhotoConfirmation/>
+        <CategoryBtn/>
       </main>
       <PR />
     </>
