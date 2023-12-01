@@ -5,12 +5,16 @@ import Image from "next/image";
 import { type } from "os";
 import React, { useState, useRef } from "react";
 import { Camera } from "react-camera-pro";
+
 import "@/feature/CameraScreen/style.css"
 
+
+
 export default function CameraScreen() {
-    const camera = useRef<CameraType>(null);
-    const [image, setImage] = useState<string | null>(null);
-    console.log(camera.current);
+  const camera = useRef<CameraType>(null);
+  const [image, setImage] = useState<string | null>(null);
+  console.log(camera.current);
+
 
     return (
     <>
@@ -24,4 +28,5 @@ export default function CameraScreen() {
     </section>
     </>
 );
+
 }
