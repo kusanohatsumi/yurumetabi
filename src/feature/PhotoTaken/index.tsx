@@ -1,4 +1,6 @@
 import "@/feature/PhotoTaken/styli.css"
+import CategoryBtn from "../CategoryBtn"
+import Link from "next/link"
 
 export default function PhotoTaken() {
     return(
@@ -10,11 +12,11 @@ export default function PhotoTaken() {
                 </section>
                 <section className="category">
                     <p>この場所のカテゴリーを選択してください</p>
-                    <div className="place"></div>
+                    <div className="place"><CategoryBtn>tttt</CategoryBtn></div>
                     <div></div>
                 </section>
                 <section className="confirmationBtn">
-                    <p><a href="#">確認</a></p>
+                    <p><Link href="#">確認</Link></p>
                 </section>
             </div>
         </>

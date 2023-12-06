@@ -1,5 +1,7 @@
 
 import "@/feature/PhotoConfirmation/styli.css"
+import CategoryBtn from "../CategoryBtn"
+
 
 export default function PhotoConfirmation(){
     return(

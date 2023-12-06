@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { Children, useState } from 'react';
 
-export default function CategoryBtn(){
+export default function CategoryBtn({
+    children,
+}:{children: React.ReactNode}){
     const [color, setColor] = useState('#B99162');
 
     const style = {
@@ -20,9 +22,7 @@ export default function CategoryBtn(){
 
     return(
         <>
-            <div>
-                <button style={style} onClick={handleClick}>aaaffff</button>
-            </div>
+            <button style={style} onClick={handleClick}>{children}</button>
         </>
     )
 }
