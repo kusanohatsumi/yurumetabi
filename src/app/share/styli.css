@@ -1,0 +1,105 @@
+
+main{
+    position: absolute;
+    width: 100%;
+    bottom: 74px;
+}
+.photoTaken{
+    width: 100%;
+    height: 200px;
+    background-color: #D9D9D9;
+}
+
+.box{
+    width: 100%;
+    height: 360px;
+    position: relative;
+    color: #FEFEFE;
+}
+
+.title{
+    background-color: #C6A476;
+    width: 100%;
+    height: 120px;
+    border-radius: 15px 15px 0 0;
+}
+.title > p{
+    padding: 15px;
+    font-size: 14px;
+}
+.title > input{
+    display: block;
+    width: 286px;
+    height: 32px;
+    background-color: #C6A476;
+    outline: solid #FEFEFE 1px;
+    border-radius: 3px;
+    margin: 0 auto;
+    color: #fff;
+}
+.title > input::placeholder{
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+}
+
+.category{
+    position: absolute;
+    z-index: 10;
+    top: 105px;
+    background-color: #E4C398;
+    width: 100%;
+    height: 217px;
+    border-radius: 15px 15px 0 0;
+}
+.category > p{
+    padding: 10px 0 5px 15px;
+}
+.place{
+    border-bottom: 1px solid #FEFEFE;
+    width: 90%;
+    height: 75px;
+    margin: 0 auto;
+}
+.place button{
+    margin-right: 10.5px;
+    margin-bottom: 12px;
+}
+.emotions{
+    width: 90%;
+    height: 65px;
+    margin: 10px auto 0;
+}
+.emotions button{
+    margin-right: 8px;
+    margin-bottom: 12px;
+}
+
+
+
+
+.confirmationBtn{
+    background-color: #FFEFD2;
+    width: 100%;
+    height: 60px;
+    font-size: 24px;
+    border-radius: 15px 15px 0 0;
+    position: absolute;
+    top: 310px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.confirmationBtn > p{
+    width: 72px;
+    height: 32px;
+    padding: 15px auto 0;
+    border-bottom: 2px solid #3F3F3F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.confirmationBtn > p > a{
+    color: #3F3F3F;
+}

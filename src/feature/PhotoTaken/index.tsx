@@ -7,7 +7,8 @@ import Link from "next/link"
 
 export default function PhotoTaken() {
     const [selectedCategory, setSelectedCategory] = useState("");
-    const [emotion, setEmotion] =useState("");
+    const [emotion, setEmotion] = useState("");
+    const[title, setTitle] = useState("");
 
     const categories = ['飲食店', '雑貨屋', '服屋', '街並み', '絶景', '有名な観光地', 'その他'];
     const emotions = ['面白い','可愛い','かっこいい','おしゃれ','落ち着く','レトロ','その他']
@@ -17,7 +18,7 @@ export default function PhotoTaken() {
             <div className="box">
                 <section className="title">
                     <p>この写真はどこの写真ですか？</p>
-                    <input type="text" placeholder="写真のタイトルを入力してください"/>
+                    <input type="text" placeholder="写真のタイトルを入力してください" value={title} onChange={(e) => setTitle(e.target.value)}/>
                 </section>
                 <section className="category">
                     <p>この場所のカテゴリーを選択してください</p>
@@ -26,7 +27,7 @@ export default function PhotoTaken() {
                         <CategoryBtn
                         key={index}
                         onClick={() => setSelectedCategory(category)}
-                        selected={selectedCategory === category} // selectedプロパティを追加します。
+                        selected={selectedCategory === category}
                         >
                         {category}
                         </CategoryBtn>
@@ -44,7 +45,7 @@ export default function PhotoTaken() {
                     </div>
                 </section>
                 <section className="confirmationBtn">
-                    <p><Link href="#">確認</Link></p>
+                    <p><Link href='/? category=${selectedCategory} & emotion=${emotion & title=${title}}'>確認</Link></p>
                 </section>
             </div>
         </>

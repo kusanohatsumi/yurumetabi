@@ -15,7 +15,7 @@ export default function Home() {
       <Header_main params="main" />
       <main>
 
-        <PhotoTaken/>
+        <CameraScreen/>
 
         ここに地図を描画する
         {/* <TitleStyle></TitleStyle> */}
