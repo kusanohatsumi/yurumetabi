@@ -9,7 +9,7 @@ import { Camera } from "react-camera-pro";
 export default function CameraScreen() {
   const camera = useRef<CameraType>(null);
   const [image, setImage] = useState<string | null>(null);
-  console.log(camera.current);
+  // console.log(camera.current);
 
   return (
     <>
