@@ -48,8 +48,8 @@ export default async function myPage() {
                 <p>タイトル：{userData.item01.title}</p>
                 <p>カテゴリー：{userData.item01.tag.place}</p>
             </div>
-        })} */}
-        {/* <GetDoc /> */}
+        })}
+        <GetDoc /> */}
         <Link href="/mypage/item01">01</Link>
         <Link href="/mypage/item02">02</Link>
         <Link href="/mypage/item03">03</Link>
