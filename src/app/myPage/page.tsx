@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function myPage() {
     return (<>
-        <Image alt="aaa" src="/image/" width={64} height={64} />
+        <Image alt="" src="public/image/" width={64} height={64} />
         <h1>アカウント名</h1>
         <h2>年齢　性別</h2>
         <p>アカウント登録日</p>
