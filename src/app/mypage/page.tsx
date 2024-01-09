@@ -1,6 +1,7 @@
 "use client"
+import { collection, where, getDocs, query, doc } from "firebase/firestore"
 import { db } from "@/firebase/firebase"
-import { collection, doc, getDoc, getDocs, query } from "firebase/firestore"
+import { useEffect, } from "react";
 
 import GetDoc from "@/feature/mypage/userItem";
 import Image from "next/image";
@@ -8,16 +9,29 @@ import { Underdog } from "next/font/google";
 import Link from "next/link";
 
 export default async function myPage() {
-    const docRef = doc(db, "user", "@user01");
-    const docSnap = await getDoc(docRef);
-    const userData = docSnap.data()
-    // console.log(userData);
-    const q = query(collection(db, "item"));
-    const querySnapshot = await getDocs(q);
-
-    querySnapshot.forEach((doc) => {
-        console.log(doc.id, doc.data());
+    const hoge = "hoge";
+    const [state, setState] = useState(undefined);
+    const item: any = [];
+    useEffect(() => {
+        const q = query(collection(db, "user"));
+        const querySnapshot = getDocs(q);
+        querySnapshot.then((docs) => {
+            docs.docs.map((doc) => {
+                item.push(doc.data());
+            });
+            setState(item);
+        }, [hoge]);
     })
+    // const docRef = doc(db, "user", "@user01");
+    // const docSnap = await getDoc(docRef);
+    // const userData = docSnap.data()
+    // console.log(userData);
+    // const q = query(collection(db, "item"));
+    // const querySnapshot = await getDocs(q);
+
+    // querySnapshot.forEach((doc) => {
+    //     console.log(doc.id, doc.data());
+    // })
 
     return (<>
         <Image alt="aaa" src="/image/" width={64} height={64} />
@@ -33,7 +47,7 @@ export default async function myPage() {
             <p>カテゴリー</p>
         </div>
 
-        {userData === undefined ? (
+        {/* {userData === undefined ? (
             console.log("データがありません")
         ) : (
             <div>
@@ -41,7 +55,7 @@ export default async function myPage() {
                 <p>タイトル：{userData.item01.title}</p>
                 <p>カテゴリー：{userData.item01.tag.place}</p>
             </div>
-        )}
+        )} */}
         {/* {querySnapshot.map((doc: any) => {
             <div>
                 <p>画像：{userData..img.alt}, {userData.item01.img.src}</p>
@@ -50,9 +64,11 @@ export default async function myPage() {
             </div>
         })}
         <GetDoc /> */}
-        <Link href="/mypage/item01">01</Link>
-        <Link href="/mypage/item02">02</Link>
-        <Link href="/mypage/item03">03</Link>
+        <div className="list">
+            <Link href="/mypage/item01">01</Link>
+            <Link href="/mypage/item02">02</Link>
+            <Link href="/mypage/item03">03</Link>
+        </div>
     </>)
 }
 
