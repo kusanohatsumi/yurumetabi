@@ -12,12 +12,11 @@ export default function PostDelete() {
 }
 
 const postDelete = {
-    display: "flex",
     height: "32px",
+    display: "flex",
+    alignItems: "center",
     color: delete_text,
-    verticalAlign: "middle",
 }
 
 const trush = {
-    verticalAlign: "middle",
 }

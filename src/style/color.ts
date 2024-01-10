@@ -9,3 +9,5 @@ export const confirm: string = "#E55A5A";
 export const background: string = "#FFEFD2";
 export const categoryTitle: string = "#E4C398";
 export const history_wrap: string = "#B58E61";
+export const delete_wrap: string = "#F4F4F4";
+export const warning_text: string = "#191919";
