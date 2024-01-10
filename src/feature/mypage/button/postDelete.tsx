@@ -13,6 +13,7 @@ export default function PostDelete() {
 
 const postDelete = {
     display: "flex",
+    height: "32px",
     color: delete_text,
     verticalAlign: "middle",
 }

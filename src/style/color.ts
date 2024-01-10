@@ -6,3 +6,6 @@ export const share_btn: string = "#F3F3F3";
 export const delete_text: string = "#E33A3A";
 export const mypage_text: string = "#3F3F3F";
 export const confirm: string = "#E55A5A";
+export const background: string = "#FFEFD2";
+export const categoryTitle: string = "#E4C398";
+export const history_wrap: string = "#B58E61";
