@@ -4,7 +4,13 @@ import PR from "@/feature/PR"
 import Header_main from "@/feature/header"
 import { useRouter,  usePathname, useSearchParams } from "next/navigation"
 import "@/app/share/PhotoConfirmation/style.css"
-export default function PhotoConfirmation() {
+
+
+
+
+
+
+export function Confirmation() {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const category = searchParams.get('category');
@@ -12,17 +18,18 @@ export default function PhotoConfirmation() {
     const title = searchParams.get('title');
 
 
-
-
+    async function handleBoth(e:any) {
+        e.preventDefault();
+        window.location.href = "/share/PhotoConfirmation/shareCompletion";
+    }
 
     return(
         <>
-            <Header_main params="main"/>
             <section className="photoTaken">
 
             </section>
 
-            <main>
+            <section>
                 <div className="box">
                     <div className="title">
                         <p>この写真はどこの写真ですか</p>
@@ -36,9 +43,20 @@ export default function PhotoConfirmation() {
                         </div>
                     </div>
                     <div className="shareBtn">
-                        <p><a href="#">共有</a></p>
+                        <button onClick={handleBoth}>共有</button>
                     </div>
                 </div>
+            </section>
+        </>
+    )
+}
+
+export default function PhotoConfirmation() {
+    return(
+        <>
+            <Header_main params="main"/>
+            <main>
+                <Confirmation/> 
             </main>
             <PR/>
         </>

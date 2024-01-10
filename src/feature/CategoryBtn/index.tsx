@@ -5,12 +5,11 @@ import React, { useState } from 'react';
 export default function CategoryBtn({
     children,
     onClick,
-    selected, // selectedプロパティを追加します。
+    selected, 
 }:{children: React.ReactNode, onClick?:() => void, selected?: boolean}){ // selectedプロパティの型を追加します。
     const [color, setColor] = useState('#B99162');
     const [shadow, setShadow] = useState('0px 1px 1px 0px #777777')
 
-    // 選択状態に基づいてスタイルを更新します。
     React.useEffect(() => {
         if (selected) {
             setColor('#A98C65');
