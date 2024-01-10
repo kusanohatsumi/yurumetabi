@@ -8,7 +8,7 @@ main{
     height: 40px;
     background-color: #E5B65A;
     display: flex;
-    padding-left: 32px;
+    padding-left: 24px;
     gap: 8px;
     line-height: 40px;
 }

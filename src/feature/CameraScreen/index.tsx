@@ -9,6 +9,7 @@ import 'firebase/firestore';
 import "@/feature/CameraScreen/style.css"
 
 export default function CameraScreen() {
+
     return (
     <>
         <section className="Camera">

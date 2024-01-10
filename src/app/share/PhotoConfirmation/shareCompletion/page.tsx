@@ -8,8 +8,6 @@ import Album from "@/feature/album";
 
 
 
-
-
 export default function shareCompletion() {
     return(
     <>

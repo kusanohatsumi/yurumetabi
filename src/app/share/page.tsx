@@ -4,8 +4,10 @@ import Header_main from "@/feature/header"
 import { useState } from "react"
 import "@/app/share/styli.css"
 import CategoryBtn from "@/feature/CategoryBtn"
-import Link from "next/link"
 import PR from "@/feature/PR"
+import { doc, setDoc, getDoc } from "firebase/firestore"
+import { db } from "@/firebase/firebase"
+
 
 export default function share(){
     const [selectedCategory, setSelectedCategory] = useState("");
@@ -13,7 +15,33 @@ export default function share(){
     const[title, setTitle] = useState("");
 
     const categories = ['飲食店', '雑貨屋', '服屋', '街並み', '絶景', '有名な観光地', 'その他'];
-    const emotions = ['面白い','可愛い','かっこいい','おしゃれ','落ち着く','レトロ','その他']
+    const emotions = ['面白い','可愛い','かっこいい','おしゃれ','落ち着く','レトロ','その他'];
+
+    const handleSubmit = async (e:any) => {
+        e.preventDefault();
+        // FireStoreのデータベースからカウントの参照を取得します
+        const counterRef = doc(db, 'counters', 'shareCount');
+        // カウントのドキュメントを取得します
+        const counterSnap = await getDoc(counterRef);
+        // カウントのドキュメントが存在する場合はその値を取得し、存在しない場合は1を設定します
+        let shareCount = counterSnap.exists() ? counterSnap.data().count : 1;
+        // 'share'コレクション内に新しいドキュメントの参照を作成します
+        const userDocumentRef = doc(db, 'share', `share${shareCount}`);
+        // 新しいドキュメントを作成し、そのドキュメントにデータを保存します
+        const documentRef = await setDoc(userDocumentRef, {
+            title:title,
+            selectedCategory:selectedCategory,
+            emotion:emotion,
+        });
+        // カウントをインクリメントします    
+        shareCount++;
+        // カウントの新しい値をデータベースに保存します
+        await setDoc(counterRef, { count: shareCount });
+
+        window.location.href = "/share/PhotoConfirmation";
+    };
+
+
 
     return(
         <div id="body">
@@ -21,7 +49,6 @@ export default function share(){
             <section className="photoTaken">
 
             </section>
-
             <main>
                 <div className="box">
                     <section className="title">
@@ -43,9 +70,9 @@ export default function share(){
                         </div>
                         <div className="emotions">
                             {emotions.map((category, index) => (
-                                <CategoryBtn
-                                key={index} onClick={() => setEmotion(category)}
-                                selected={emotion === category}
+                            <CategoryBtn
+                            key={index} onClick={() => setEmotion(category)}
+                            selected={emotion === category}
                             >
                                 {category}
                             </CategoryBtn>
@@ -53,7 +80,7 @@ export default function share(){
                         </div>
                     </section>
                     <section className="confirmationBtn">
-                        <p><Link href={`/share/PhotoConfirmation?category=${selectedCategory}&emotion=${emotion}&title=${title}`}>確認</Link></p>
+                        <button onClick={handleSubmit}>確認</button>
                     </section>
                 </div>
             </main>
