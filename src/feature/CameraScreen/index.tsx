@@ -4,7 +4,7 @@ import { CameraType } from "@/components/Camera/types";
 import Image from "next/image";
 import { type } from "os";
 import React, { useState, useRef } from "react";
-import { Camera } from "react-camera-pro";
+// import { Camera } from "react-camera-pro";
 
 export default function CameraScreen() {
   const camera = useRef<CameraType>(null);
@@ -27,7 +27,7 @@ export default function CameraScreen() {
         </div>
         <section>
           <div className="w-full h-8">
-            <Camera
+            {/* <Camera
               errorMessages={{
                 noCameraAccessible:
                   "No camera device accessible. Please connect your camera or try a different browser.",
@@ -38,7 +38,7 @@ export default function CameraScreen() {
                 canvas: "Canvas is not supported.",
               }}
               ref={camera}
-            />
+            /> */}
           </div>
         </section>
         <section>
