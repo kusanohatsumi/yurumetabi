@@ -46,17 +46,17 @@ export default function share(){
 
     return(
         <div id="body">
-            <Header_main params="main"/>
             <section className="photoTaken">
-                <Image src="/image/Destination.jpeg" alt="目的地" width={386} height={300} />
+                {/* <Image src="/image/Destination.jpeg" alt="目的地" width={386} height={300} /> */}
+                <Image src="/image/ecc.jpeg" alt="ecc" width={386} height={300} />
             </section>
-            <main>
+            <section className="main">
                 <div className="box">
-                    <section className="title">
+                    <div className="title">
                         <p>この写真はどこの写真ですか？</p>
                         <input type="text" placeholder="写真のタイトルを入力してください" value={title} onChange={(e) => setTitle(e.target.value)}/>
-                    </section>
-                    <section className="category">
+                    </div>
+                    <div className="category">
                         <p>この場所のカテゴリーを選択してください</p>
                         <div className="place">
                             {categories.map((category, index) => (
@@ -79,13 +79,12 @@ export default function share(){
                             </CategoryBtn>
                             ))}
                         </div>
-                    </section>
-                    <section className="confirmationBtn">
+                    </div>
+                    <div className="confirmationBtn">
                         <button onClick={handleSubmit}>確認</button>
-                    </section>
+                    </div>
                 </div>
-            </main>
-            <PR/>
+            </section>
         </div>
     )
 }

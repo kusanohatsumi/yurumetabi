@@ -58,7 +58,10 @@ export default function Album() {
         <>
             <section className="album">
                 <div className="albumMain">
-                    <div className="photograph"></div>
+                    <div className="photograph">
+                        {/* <Image src="/image/Destination.jpeg" alt="目的地" width={386} height={300} /> */}
+                        <Image src="/image/ecc.jpeg" alt="ecc" width={386} height={300} />
+                    </div>
                     {shares.map((share) => (
                         <h2 className="value" key={share.id}>{share.title}</h2>
                     ))}

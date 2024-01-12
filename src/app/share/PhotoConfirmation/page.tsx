@@ -90,15 +90,16 @@ export default function PhotoConfirmation() {
     
     return(
         <>
-            <Header_main params="main"/>
             <div className="back">
                 <Image src="/image/arrow.svg" alt="矢印" width={20} height={20} />
                 <button onClick={bakBoth}>入力画面へ戻る</button>
             </div>
             <section className="photoTaken">
+                {/* <Image src="/image/Destination.jpeg" alt="目的地" width={386} height={300} /> */}
+                <Image src="/image/ecc.jpeg" alt="ecc" width={386} height={300} />
             </section>
-            <main>
-                <section>
+            <section>
+                <section className="main">
                     <div className="box">
                         <div className="title">
                             <p>この写真はどこの写真ですか</p>
@@ -122,8 +123,7 @@ export default function PhotoConfirmation() {
                         </div>
                     </div>
                 </section>
-            </main>
-            <PR/>
+            </section>
         </>
     )
 }
