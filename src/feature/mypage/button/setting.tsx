@@ -1,10 +1,10 @@
 import Image from "next/image";
 
-export default function mypage() {
+export default function Setting() {
     return (<>
         <button>
             <a href="">
-                <Image src="" alt="" width={21} height={21} />
+                <Image src="/image/setting.svg" alt="" width={52} height={48} />
             </a>
         </button>
     </>)
