@@ -1,10 +1,11 @@
 "use client"
 
 import Header_main from "@/feature/header"
+import PR from "@/feature/PR"
+import Image from "next/image"
 import { useState } from "react"
 import "@/app/share/styli.css"
 import CategoryBtn from "@/feature/CategoryBtn"
-import PR from "@/feature/PR"
 import { doc, setDoc, getDoc } from "firebase/firestore"
 import { db } from "@/firebase/firebase"
 
@@ -47,7 +48,7 @@ export default function share(){
         <div id="body">
             <Header_main params="main"/>
             <section className="photoTaken">
-
+                <Image src="/image/Destination.jpeg" alt="目的地" width={386} height={300} />
             </section>
             <main>
                 <div className="box">
