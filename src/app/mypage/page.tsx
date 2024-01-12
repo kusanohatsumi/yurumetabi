@@ -11,11 +11,10 @@ import TitleStyle from "@/feature/mypage/titleStyle";
 import ShareHistory from "@/feature/mypage/button/historyBtn";
 import Setting from "@/feature/mypage/button/setting";
 import PostDelete from "@/feature/mypage/button/postDelete";
-import BackWard from "@/feature/mypage/button/backward";
 import Back from "@/feature/mypage/button/back";
 import ConfirmBtn from "@/feature/mypage/button/confirm";
 import BackToMypage from "@/feature/mypage/button/backtomypage";
-import { background, categoryTitle, history_wrap, mypage_text } from "@/style/color";
+import { background, categoryTitle, category_co, history_wrap, mypage_text } from "@/style/color";
 import Header from "@/feature/header/header";
 import MarketingLayout from "../(header)/layout";
 import Header_main from "@/feature/header";
@@ -71,18 +70,44 @@ export default async function mypage() {
                 <p style={shareText}>タップすると画像全体をみることができます</p>
             </div>
 
-            <div>
+            <section style={historyWrap}>
                 <div style={historyTitle}>
                     <p style={titleText}>撮影写真</p>
                     <p style={titleText}>写真タイトル</p>
                     <p style={titleText}>カテゴリー</p>
                 </div>
-                <div style={historyWrap}>
+
+                <div style={childWrap}>
+                    <div style={historyChild}>
+                        <Image src="/image/city.svg" alt="" width={76} height={50} style={img} />
+                        <p style={imgTitle}>中崎町の町並み</p>
+                        <div style={category}>
+                            <p>街並み</p>
+                            <p>レトロ</p>
+                        </div>
+                    </div>
+                    <div style={historyChild}>
+                        <Image src="/image/city.svg" alt="" width={76} height={50} style={img} />
+                        <p style={imgTitle}>中崎町の町並み</p>
+                        <div style={category}>
+                            <p>街並み</p>
+                            <p>レトロ</p>
+                        </div>
+                    </div>
+                    <div style={historyChild}>
+                        <Image src="/image/city.svg" alt="" width={76} height={50} style={img} />
+                        <p style={imgTitle}>中崎町の町並み</p>
+                        <div style={category}>
+                            <p>街並み</p>
+                            <p>レトロ</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
+
             {/* {userData === undefined ? (
-            console.log("データがありません")
-        ) : (
+                console.log("データがありません")
+                ) : (
             <div>
                 <p>画像：{userData.item01.img.alt}, {userData.item01.img.src}</p>
                 <p>タイトル：{userData.item01.title}</p>
@@ -105,7 +130,7 @@ export default async function mypage() {
                 </div> */}
 
             <PR />
-        </main>
+        </main >
     </>)
 }
 
@@ -153,6 +178,18 @@ const shareText = {
     color: mypage_text,
 }
 
+
+const titleText = {
+    color: mypage_text,
+}
+
+const historyWrap = {
+    width: "100%",
+    height: "320px",
+    backgroundColor: history_wrap,
+    border: "1px solid #F3F3F3",
+}
+
 const historyTitle = {
     width: "100%",
     height: "30px",
@@ -165,13 +202,46 @@ const historyTitle = {
     fontSize: "12px",
 }
 
-const titleText = {
-    color: mypage_text,
+const childWrap = {
+    // display: "grid",
+    // gridTemplateColumns: "110px 100px 110px",
+    // gridTemplateRows: "76px 76px 76px",
+    // justifyItems: "center",
+    // gridTemplateAreas: "img imgTitle category",
+    // gridTemplateAreas: '"img imgTitle category" "img imgTitle category" "img imgTitle category"',
+    width: "320px",
+    border: "1px solid tomato",
 }
 
-const historyWrap = {
-    width: "100%",
-    height: "320px",
-    backgroundColor: history_wrap,
-    border: "1px solid #F3F3F3",
+const historyChild = {
+    width: "320px",
+    height: "76px",
+    margin: "0 auto",
+    borderBottom: "0.5px solid #F3F3F3",
+    color: category_co,
+    display: "flex",
+    justifyContent: "space-around",
+}
+
+const img = {
+    // gridAreas: "img",
+    // border: "1px solid tomato",
+    // gridColumn: "1/2",
+    // gridRow: "1/2",
+}
+
+const imgTitle = {
+    // gridAreas: "imgTitle",
+    fontSize: "12px",
+    // border: "1px solid tomato",
+    // gridColumn: "2/3",
+    // gridRow: "1/2",
+}
+
+const category = {
+    // gridAreas: "category",
+    fontSize: "12px",
+    // border: "1px solid tomato",
+    // gridColumn: "3/4",
+    // gridRow: "1/2",
 }
