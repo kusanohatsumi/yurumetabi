@@ -19,7 +19,7 @@ import Header from "@/feature/header/header";
 import MarketingLayout from "../(header)/layout";
 import Header_main from "@/feature/header";
 import PR from "@/feature/PR";
-
+// import "@/app/mypage/"
 
 
 export default async function mypage() {
@@ -71,14 +71,18 @@ export default async function mypage() {
             </div>
 
             <section style={historyWrap}>
-                <div style={historyTitle}>
-                    <p style={titleText}>撮影写真</p>
-                    <p style={titleText}>写真タイトル</p>
-                    <p style={titleText}>カテゴリー</p>
+                {/* タイトル*/}
+                <div style={titleWrap}>
+                    <p style={imgText}>撮影写真</p>
+                    <p style={imgTitleText}>写真タイトル</p>
+                    <p style={categoryText}>カテゴリー</p>
                 </div>
+                {/* データ */}
                 <div style={childWrap}>
                     <div style={historyChild}>
-                        <Image src="/image/city.svg" alt="" width={76} height={50} style={img} />
+                        <div style={imgWrap}>
+                            <Image src="/image/city.svg" alt="" style={img} width={76} height={50} />
+                        </div>
                         <p style={imgTitle}>中崎町の町並み</p>
                         <div style={category}>
                             <p>街並み</p>
@@ -86,7 +90,9 @@ export default async function mypage() {
                         </div>
                     </div>
                     <div style={historyChild}>
-                        <Image src="/image/city.svg" alt="" width={76} height={50} style={img} />
+                        <div style={imgWrap}>
+                            <Image src="/image/city.svg" alt="" style={img} width={76} height={50} />
+                        </div>
                         <p style={imgTitle}>中崎町の町並み</p>
                         <div style={category}>
                             <p>街並み</p>
@@ -94,7 +100,19 @@ export default async function mypage() {
                         </div>
                     </div>
                     <div style={historyChild}>
-                        <Image src="/image/city.svg" alt="" width={76} height={50} style={img} />
+                        <div style={imgWrap}>
+                            <Image src="/image/city.svg" alt="" style={img} width={76} height={50} />
+                        </div>
+                        <p style={imgTitle}>中崎町の町並み</p>
+                        <div style={category}>
+                            <p>街並み</p>
+                            <p>レトロ</p>
+                        </div>
+                    </div>
+                    <div style={historyChild}>
+                        <div style={imgWrap}>
+                            <Image src="/image/city.svg" alt="" style={img} width={76} height={50} />
+                        </div>
                         <p style={imgTitle}>中崎町の町並み</p>
                         <div style={category}>
                             <p>街並み</p>
@@ -178,71 +196,111 @@ const shareText = {
 }
 
 
-const titleText = {
-    color: mypage_text,
-}
-
 const historyWrap = {
     width: "100%",
     height: "320px",
     backgroundColor: history_wrap,
     border: "1px solid #F3F3F3",
-    display: "grid",
-    gridTemplateColumns: "100% 100px 110px",
-    gridTemplateRows: "76px 76px 76px",
+    // display: "grid",
+    // gridTemplateColumns: "8% 28% 28% 28% 8%",
+    // gridTemplateRows: "30px repeat(3,76px)",
 }
 
-const historyTitle = {
+const titleWrap = {
     width: "100%",
     height: "30px",
-    padding: "0 60px",
-    border: "1px solid #F3F3F3",
+    // border: "1px solid #F3F3F3",
     backgroundColor: categoryTitle,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+    // display: "flex",
+    // justifyContent: "space-between",
+    // alignItems: "center",
+    display: "grid",
+    gridTemplateColumns: "8% 28% 28% 28% 8%",
+    gridTemplateRows: "30px",
     fontSize: "12px",
+    color: mypage_text,
 }
 
+const imgText = {
+    gridColumn: "2/3",
+    gridRow: "1/2",
+    fontSize: "12px",
+    color: mypage_text,
+    backgroundColor: categoryTitle,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+}
+
+const imgTitleText = {
+    gridColumn: "3/4",
+    gridRow: "1/2",
+    backgroundColor: categoryTitle,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+}
+
+const categoryText = {
+    gridColumn: "4/5",
+    gridRow: "1/2",
+    backgroundColor: categoryTitle,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+}
+
+
 const childWrap = {
-    // display: "grid",
-    // justifyItems: "center",
-    // gridTemplateAreas: "img imgTitle category",
-    // gridTemplateAreas: '"img imgTitle category" "img imgTitle category" "img imgTitle category"',
     width: "100%",
-    padding: "0 36px",
+    height: "300px",
+    overflow: "scroll",
     // border: "1px solid tomato",
 }
 
 const historyChild = {
-    width: "320px",
+    width: "100%",
     height: "76px",
-    margin: "0 auto",
-    borderBottom: "0.5px solid #F3F3F3",
-    color: category_co,
+    display: "grid",
+    gridTemplateColumns: "8% 28% 28% 28% 8%",
+    gridTemplateRows: "76px",
+}
+
+const imgWrap = {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    alignItems: "center",
+    gridColumn: "2/3",
+    gridRow: "1/2",
+    borderBottom: "0.5px solid #F3F3F3",
+    // border: "1px solid tomato",
 }
 
 const img = {
-    // gridAreas: "img",
-    // border: "1px solid tomato",
-    // gridColumn: "1/2",
-    // gridRow: "1/2",
+    border: "1px solid #F3F3F3",
 }
 
 const imgTitle = {
-    // gridAreas: "imgTitle",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     fontSize: "12px",
+    color: category_co,
+    gridColumn: "3/4",
+    gridRow: "1/2",
+    borderBottom: "0.5px solid #F3F3F3",
     // border: "1px solid tomato",
-    // gridColumn: "2/3",
-    // gridRow: "1/2",
 }
 
 const category = {
-    // gridAreas: "category",
+    display: "flex",
+    flexFlow: "column",
+    justifyContent: "center",
+    alignItems: "center",
     fontSize: "12px",
+    color: category_co,
+    gridColumn: "4/5",
+    gridRow: "1/2",
+    borderBottom: "0.5px solid #F3F3F3",
     // border: "1px solid tomato",
-    // gridColumn: "3/4",
-    // gridRow: "1/2",
 }
