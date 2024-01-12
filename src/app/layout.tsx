@@ -1,6 +1,9 @@
+import Header_main from "@/feature/header";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import PR from "@/feature/PR";
+import Menu from "@/feature/menu";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -15,7 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header_main params="main" />
+        <main>
+          {children}
+          <Menu />
+        </main>
+        <PR />
+      </body>
     </html>
   );
 }
