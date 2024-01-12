@@ -6,6 +6,7 @@ import Category from "@/feature/mypage/category";
 import Mypage from "@/feature/mypage/category";
 import TitleStyle from "@/feature/mypage/titleStyle";
 import PhotoConfirmation from "@/feature/PhotoConfirmation";
+import PhotoTaken from "@/feature/PhotoTaken";
 
 import PR from "@/feature/PR";
 
