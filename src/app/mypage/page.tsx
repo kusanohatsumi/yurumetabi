@@ -76,7 +76,6 @@ export default async function mypage() {
                     <p style={titleText}>写真タイトル</p>
                     <p style={titleText}>カテゴリー</p>
                 </div>
-
                 <div style={childWrap}>
                     <div style={historyChild}>
                         <Image src="/image/city.svg" alt="" width={76} height={50} style={img} />
@@ -188,6 +187,9 @@ const historyWrap = {
     height: "320px",
     backgroundColor: history_wrap,
     border: "1px solid #F3F3F3",
+    display: "grid",
+    gridTemplateColumns: "100% 100px 110px",
+    gridTemplateRows: "76px 76px 76px",
 }
 
 const historyTitle = {
@@ -204,13 +206,12 @@ const historyTitle = {
 
 const childWrap = {
     // display: "grid",
-    // gridTemplateColumns: "110px 100px 110px",
-    // gridTemplateRows: "76px 76px 76px",
     // justifyItems: "center",
     // gridTemplateAreas: "img imgTitle category",
     // gridTemplateAreas: '"img imgTitle category" "img imgTitle category" "img imgTitle category"',
-    width: "320px",
-    border: "1px solid tomato",
+    width: "100%",
+    padding: "0 36px",
+    // border: "1px solid tomato",
 }
 
 const historyChild = {
@@ -220,7 +221,7 @@ const historyChild = {
     borderBottom: "0.5px solid #F3F3F3",
     color: category_co,
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
 }
 
 const img = {
