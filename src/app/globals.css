@@ -13,15 +13,9 @@
   padding: 0;
 }
 body {
-  border: solid 2px skyblue;
+  border: solid 2px #ccc;
   position: relative;
   width: 390px;
   height: 100vh;
   margin: 0 auto;
-}
-
-a {
-  width: 100%;
-  height: 100%;
-  display: block;
 }

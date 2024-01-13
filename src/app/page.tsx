@@ -1,3 +1,10 @@
+"use client";
+import React, { useEffect, useRef } from "react";
+import CameraScreen from "@/feature/CameraScreen";
+import Header_main from "@/feature/header";
+import Menu from "@/feature/menu";
+import PR from "@/feature/PR";
+
 export default function Home() {
   return (
     <>
