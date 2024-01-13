@@ -1,5 +1,9 @@
+"use client";
+
 import CameraScreen from "@/feature/CameraScreen";
 import CategoryBtn from "@/feature/CategoryBtn";
+import Map from "@/feature/googlemap";
+import GoogleMap from "@/feature/googlemap";
 import Header_main from "@/feature/header";
 import Menu from "@/feature/menu";
 import Category from "@/feature/mypage/category";
@@ -14,7 +18,7 @@ export default function Home() {
   return (
     <>
       <main>
-        ここに地図を描画する
+        <Map />
       </main>
     </>
   );

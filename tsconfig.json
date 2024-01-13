@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["googlemaps"],
     "target": "ESNext",
     "downlevelIteration": true,
     "lib": ["dom", "dom.iterable", "esnext"],
