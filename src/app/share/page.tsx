@@ -1,23 +1,36 @@
 "use client"
 
-import Header_main from "@/feature/header"
-import PR from "@/feature/PR"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import "@/app/share/styli.css"
 import CategoryBtn from "@/feature/CategoryBtn"
 import { doc, setDoc, getDoc } from "firebase/firestore"
-import { db } from "@/firebase/firebase"
+import { db, storage } from "@/firebase/firebase"
+import { getDownloadURL, ref } from "firebase/storage";
 
 
 export default function share(){
     const [selectedCategory, setSelectedCategory] = useState("");
     const [emotion, setEmotion] = useState("");
     const[title, setTitle] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
 
     const categories = ['飲食店', '雑貨屋', '服屋', '街並み', '絶景', '有名な観光地', 'その他'];
     const emotions = ['面白い','可愛い','かっこいい','おしゃれ','落ち着く','レトロ','その他'];
 
+    useEffect(() => {
+        const fetchImage = async () => {
+        const counterRef = doc(db, 'counters', 'shareCount');
+        const counterSnap = await getDoc(counterRef);
+        let shareCount = counterSnap.exists() ? counterSnap.data().count : 1;
+        const storageRef = ref(storage, `shareImg${shareCount}`);
+        const url = await getDownloadURL(storageRef);
+        setImageUrl(url);
+        };
+    
+        fetchImage();  // fetchImage関数を呼び出します
+      }, []);  // 依存配列が空なので、このuseEffectフックはコンポーネントがマウントされたときに一度だけ実行されます
+    
     const handleSubmit = async (e:any) => {
         e.preventDefault();
         // FireStoreのデータベースからカウントの参照を取得します
@@ -34,6 +47,7 @@ export default function share(){
             selectedCategory:selectedCategory,
             emotion:emotion,
         });
+
         // カウントをインクリメントします    
         shareCount++;
         // カウントの新しい値をデータベースに保存します
@@ -47,8 +61,11 @@ export default function share(){
     return(
         <div id="body">
             <section className="photoTaken">
-                {/* <Image src="/image/Destination.jpeg" alt="目的地" width={386} height={300} /> */}
-                <Image src="/image/ecc.jpeg" alt="ecc" width={386} height={300} />
+                {imageUrl ? (
+                    <Image src={imageUrl} alt="Uploaded"  width={386} height={300}/>
+                ):(
+                    <div style={{widows:'100%', height:'300px', backgroundColor:'#9A9792'}} ></div>
+                )}
             </section>
             <section className="main">
                 <div className="box">

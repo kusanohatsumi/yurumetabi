@@ -2,7 +2,7 @@
 .main{
     position: absolute;
     width: 100%;
-    bottom: 74px;
+    bottom: 0;
 }
 .photoTaken{
     width: 100%;
