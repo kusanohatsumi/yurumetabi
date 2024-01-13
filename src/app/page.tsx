@@ -1,5 +1,4 @@
 "use client";
-
 import CameraScreen from "@/feature/CameraScreen";
 import CategoryBtn from "@/feature/CategoryBtn";
 import Map from "@/feature/googlemap";
