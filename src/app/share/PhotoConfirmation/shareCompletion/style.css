@@ -1,0 +1,22 @@
+main > div{
+    z-index: -100;
+}
+
+.main{
+    width: 100%;
+    height: 85vh;
+    background-color: #F4DCB3;
+}
+.back{
+    width: 100%;
+    height: 40px;
+    background-color: #E5B65A;
+    display: flex;
+    padding-left: 24px;
+    gap: 8px;
+    line-height: 40px;
+}
+.main > p{
+    text-align: center;
+    margin-top: 65px;
+}

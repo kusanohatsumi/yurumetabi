@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  border: solid 2px #ccc;
+  position: relative;
+  width: 390px;
+  height: 100vh;
+  margin: 0 auto;
+}
