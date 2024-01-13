@@ -22,7 +22,6 @@ import {
   mypage_text,
 } from "@/style/color";
 import Header from "@/feature/header/header";
-import MarketingLayout from "../(header)/layout";
 import Header_main from "@/feature/header";
 import PR from "@/feature/PR";
 
