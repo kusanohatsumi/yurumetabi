@@ -1,12 +1,14 @@
+"use client";
+
 import { db } from "@/firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { useEffect, } from "react";
+import { useEffect, useState } from "react";
 
-export type Item = {
-    img: { src: string; alt: string };
-    tag: { place: string; category: string };
-    title: string;
-};
+// export type Item = {
+//     img: { src: string; alt: string };
+//     tag: { place: string; category: string };
+//     title: string;
+// };
 
 // export default async function blogItem({ params }: { params: { id: string } }) {
 //     console.log(params.id); // blog1 , blog02 などがとれる
@@ -15,34 +17,34 @@ export type Item = {
 // </>)
 // }
 
-export default function MyPageItem({ params }: { params: { id: string } }) {
-    const param = params.id;
-    const [state, setState] = useState<Item>();
-    useEffect(() => {
-        const docRef = doc(db, "user", "@user01");
-        const docSnap = getDoc(docRef);
-        docSnap.then((doc) => {
-            if (doc.exists()) {
-                setState(doc.data()[param]);
-            }
-        });
-    }, [param]);
+// export default function MyPageItem({ params }: { params: { id: string } }) {
+//     const param = params.id;
+//     const [state, setState] = useState<Item>();
+//     useEffect(() => {
+//         const docRef = doc(db, "user", "@user01");
+//         const docSnap = getDoc(docRef);
+//         docSnap.then((doc) => {
+//             if (doc.exists()) {
+//                 setState(doc.data()[param]);
+//             }
+//         });
+//     }, [param]);
 
-    return (
-        <>
-            {state != undefined ? (
-                <div>
-                    <div>id:</div>
-                    <div>{state.title}</div>
-                    <div>{state.tag.category}</div>
-                    <div>{state.tag.place}</div>
-                </div>
-            ) : (
-                console.log("loading...")
-            )}
-        </>
-    );
-}
+//     return (
+//         <>
+//             {state != undefined ? (
+//                 <div>
+//                     <div>id:</div>
+//                     <div>{state.title}</div>
+//                     <div>{state.tag.category}</div>
+//                     <div>{state.tag.place}</div>
+//                 </div>
+//             ) : (
+//                 console.log("loading...")
+//             )}
+//         </>
+//     );
+// }
 
 
 // export default async function MyPageItem({ params }: { params: { id: any } }) {
@@ -71,3 +73,42 @@ export default function MyPageItem({ params }: { params: { id: string } }) {
 //     <div>id:</div>
 // </>)
 // }
+
+export type Item = {
+    emotion: string;
+    selectedCategory: string;
+    title: string;
+};
+
+// export default async function blogItem({ params }: { params: { id: string } }) {
+//     console.log(params.id);
+//     return ();
+// }
+
+export default function mypage({ params }: { params: { id: string } }) {
+    const param = params.id;
+    const [state, setState] = useState<Item>();
+    useEffect(() => {
+        const docRef = doc(db, "share", "share01");
+        const docSnap = getDoc(docRef);
+        docSnap.then((doc) => {
+            if (doc.exists()) {
+                setState(doc.data()[param]);
+            }
+        });
+    }, [param]);
+
+    return (
+        <>
+            {state != undefined ? (
+                <div>
+                    <div>{state.emotion}</div>
+                    <div>{state.selectedCategory}</div>
+                    <div>{state.title}</div>
+                </div>
+            ) : (
+                console.log("loading...")
+            )}
+        </>
+    );
+}
