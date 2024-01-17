@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Menu() {
   return (
     <div
-      className="w-full flex gap-14 justify-center items-end text-xs h-16 absolute bottom-16 rounded-t-lg"
+      className="w-full flex gap-14 justify-center items-end text-xs h-16 rounded-t-lg absolute bottom-0"
       style={{ backgroundColor: sub }}
     >
       <Link

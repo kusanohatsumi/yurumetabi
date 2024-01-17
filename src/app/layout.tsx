@@ -20,17 +20,17 @@ export default function RootLayout({
   const googleMapsApiKey = process.env.NEXT_PUBLIC_GMAPS_API_KEY;
   return (
     <html lang="ja">
-      <body className={inter.className}>
-        <Head>
-          {googleMapsApiKey && (
-            <script
-              async
-              src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&callback=console.debug&libraries=maps,marker&v=beta"
-            />
-          )}
-        </Head>
+      {/* <Head>
+        {googleMapsApiKey && (
+          <script
+            async
+            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&callback=console.debug&libraries=maps,marker&v=beta"
+          />
+        )}
+      </Head> */}
+      <body>
         <Header_main params="main" />
-        <main>
+        <main className="relative">
           {children}
           <Menu />
         </main>
