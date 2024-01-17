@@ -92,7 +92,7 @@ export default function mypage() {
           <div style={childWrap}>
             {shares.map((share, index) => {
               return (
-                <Link href="/mypage/id${index}">
+                <Link href={`/mypage/id${index}`}>
                   <div key={index} style={historyChild}>
                     <div style={imgWrap}>
                       {imageUrls[index] ? (
