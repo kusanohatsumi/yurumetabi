@@ -5,9 +5,9 @@ import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 // export type Item = {
-//     img: { src: string; alt: string };
-//     tag: { place: string; category: string };
-//     title: string;
+//   img: { src: string; alt: string };
+//   tag: { place: string; category: string };
+//   title: string;
 // };
 
 // export default async function blogItem({ params }: { params: { id: string } }) {
@@ -46,7 +46,6 @@ import { useEffect, useState } from "react";
 //     );
 // }
 
-
 // export default async function MyPageItem({ params }: { params: { id: any } }) {
 //     const param = params.id
 // const docRef = doc(db, "user", "@user01");
@@ -64,7 +63,6 @@ import { useEffect, useState } from "react";
 //     } else {
 //         console.log(userData.param);
 
-
 //     }
 // }
 
@@ -74,41 +72,76 @@ import { useEffect, useState } from "react";
 // </>)
 // }
 
-export type Item = {
-    emotion: string;
-    selectedCategory: string;
-    title: string;
-};
+// export type Item = {
+//   emotion: string;
+//   selectedCategory: string;
+//   title: string;
+// };
 
 // export default async function blogItem({ params }: { params: { id: string } }) {
 //     console.log(params.id);
 //     return ();
 // }
 
-export default function mypage({ params }: { params: { id: string } }) {
-    const param = params.id;
-    const [state, setState] = useState<Item>();
-    useEffect(() => {
-        const docRef = doc(db, "share", "share01");
-        const docSnap = getDoc(docRef);
-        docSnap.then((doc) => {
-            if (doc.exists()) {
-                setState(doc.data()[param]);
-            }
-        });
-    }, [param]);
+// export default function mypage({ params }: { params: { id: string } }) {
+//   const param = params.id;
+//   const [state, setState] = useState<DocumentData[]>();
+//   useEffect(() => {
+//     const docRef = doc(db, "share", "share01");
+//     console.log(docRef);
+//     const docSnap = getDoc(docRef);
+//     docSnap.then((doc) => {
+//       if (doc.exists()) {
+//         setState(doc.data()[param]);
+//       }
+//     });
+//   }, [param]);
 
-    return (
-        <>
-            {state != undefined ? (
-                <div>
-                    <div>{state.emotion}</div>
-                    <div>{state.selectedCategory}</div>
-                    <div>{state.title}</div>
-                </div>
-            ) : (
-                console.log("loading...")
-            )}
-        </>
-    );
-}
+//   return (
+//     <>
+//       {state != undefined ? (
+//         <div>
+//           <p>aaa</p>
+//           {/* <div>{state.emotion}</div>
+//           <div>{state.selectedCategory}</div>
+//           <div>{state.title}</div> */}
+//         </div>
+//       ) : (
+//         console.log("loading...")
+//       )}
+//     </>
+//   );
+//   //   return (
+//   //     <>
+//   //       <section>
+//   //         <div>
+//   //           <div>
+//   //             {imageUrl ? (
+//   //               <Image src={imageUrl} alt="Uploaded" width={386} height={300} />
+//   //             ) : (
+//   //               <></>
+//   //             )}
+//   //           </div>
+//   //           {shares.map((share) => (
+//   //             <h2 className="value" key={share.id}>
+//   //               {share.title}
+//   //             </h2>
+//   //           ))}
+//   //           <p>カテゴリー</p>
+//   //           <div className="category">
+//   //             {shares.map((share) => (
+//   //               <p className="value" key={share.id}>
+//   //                 {share.selectedCategory}
+//   //               </p>
+//   //             ))}
+//   //             {shares.map((share) => (
+//   //               <p className="value" key={share.id}>
+//   //                 {share.emotion}
+//   //               </p>
+//   //             ))}
+//   //           </div>
+//   //         </div>
+//   //       </section>
+//   //     </>
+//   //   );
+// }
