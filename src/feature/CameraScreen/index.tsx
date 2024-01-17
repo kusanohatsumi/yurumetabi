@@ -13,6 +13,7 @@ import { ref,uploadString, getDownloadURL } from "firebase/storage";
 
 
 export default function CameraScreen() {
+<<<<<<< HEAD
     const [ photograph, usePhotograph ] = useState("");
     
     const handleSubmit = async (photograph: string) => {
@@ -51,6 +52,13 @@ export default function CameraScreen() {
     };
         
     return (
+=======
+  const camera = useRef<CameraType>(null);
+  const [image, setImage] = useState<string | null>(null);
+  // console.log(camera.current);
+
+  return (
+>>>>>>> origin/feature/map
     <>
         <section className="Camera">
             <div>
