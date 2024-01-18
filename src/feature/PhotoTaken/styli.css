@@ -24,6 +24,12 @@
     outline: solid #FEFEFE 1px;
     border-radius: 3px;
     margin: 0 auto;
+    color: #fff;
+}
+.title > input::placeholder{
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
 }
 
 .category{
@@ -35,16 +41,31 @@
     height: 217px;
     border-radius: 15px 15px 0 0;
 }
+.category > p{
+    padding: 10px 0 5px 15px;
+}
 .place{
     border-bottom: 1px solid #FEFEFE;
     width: 90%;
-    height: 10px;
+    height: 75px;
     margin: 0 auto;
-    padding-top: 50px;
 }
-.category > p{
-    padding: 15px;
+.place button{
+    margin-right: 10.5px;
+    margin-bottom: 12px;
 }
+.emotions{
+    width: 90%;
+    height: 65px;
+    margin: 10px auto 0;
+}
+.emotions button{
+    margin-right: 8px;
+    margin-bottom: 12px;
+}
+
+
+
 
 .confirmationBtn{
     background-color: #FFEFD2;
@@ -53,8 +74,11 @@
     font-size: 24px;
     border-radius: 15px 15px 0 0;
     position: absolute;
-    top: 280px;
+    top: 310px;
     z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .confirmationBtn > p{
     width: 72px;

@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "types": ["googlemaps"],
+    "target": "ESNext",
+    "downlevelIteration": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

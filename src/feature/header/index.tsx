@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Header_main({ params }: { params: string }) {
   return (
     <header
-      className="w-full h-24 flex justify-between  items-cente relative"
+      className="w-full h-16 flex justify-between  items-cente relative"
       style={{ backgroundColor: main }}
     >
       {/* <Image
@@ -18,7 +18,7 @@ export default function Header_main({ params }: { params: string }) {
 
       <h1 className="w-full flex items-center  text-center ">
         <Link href="/" className="  text-4xl m-auto ">
-          Logo
+          <Image src="/image/logo.svg" alt="LOGO" width={140} height={38} />
         </Link>
       </h1>
     </header>
