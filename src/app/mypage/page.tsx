@@ -27,20 +27,8 @@ import {
   history_wrap,
   mypage_text,
 } from "@/style/color";
-import {
-  background,
-  categoryTitle,
-  category_co,
-  history_wrap,
-  mypage_text,
-} from "@/style/color";
-import Header from "@/feature/header/header";
-import MarketingLayout from "../(header)/layout";
-import Header_main from "@/feature/header";
-import PR from "@/feature/PR";
 import { getDownloadURL } from "firebase/storage";
 import Link from "next/link";
-// import "@/app/mypage/"
 
 export default function mypage() {
   const [shares, setShares] = useState<DocumentData[]>([]);
@@ -106,9 +94,15 @@ export default function mypage() {
                         <Image
                           src={imageUrls[index]}
                           alt="Uploaded"
-                          width={76}
-                          height={50}
-                          style={img}
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          style={{
+                            border: "1px solid #F3F3F3",
+                            width: "76px",
+                            height: "50px",
+                            objectFit: "cover",
+                          }}
                         />
                       ) : (
                         <></>
@@ -134,7 +128,7 @@ export default function mypage() {
                 <p>カテゴリー：{userData.item01.tag.place}</p>
             </div>
         )} */}
-            {/* {querySnapshot.map((doc: any) => {
+        {/* {querySnapshot.map((doc: any) => {
             <div>
                 <p>画像：{userData..img.alt}, {userData.item01.img.src}</p>
                 <p>タイトル：{userData.item01.title}</p>
@@ -154,19 +148,8 @@ const mainWrap = {
   height: "100%",
   backgroundColor: background,
 };
-  width: "100%",
-  height: "100%",
-  backgroundColor: background,
-};
 
 const mypageTitle = {
-  width: "320px",
-  margin: "0 auto",
-  padding: "8% 0",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-};
   width: "320px",
   margin: "0 auto",
   padding: "8% 0",
@@ -179,13 +162,8 @@ const accountName = {
   fontFamily: "Kosugi Maru",
   fontSize: "24px",
 };
-  fontFamily: "Kosugi Maru",
-  fontSize: "24px",
-};
 
 const accountDate = {
-  color: mypage_text,
-};
   color: mypage_text,
 };
 
@@ -195,19 +173,8 @@ const signDate = {
   display: "flex",
   justifyContent: "space-between",
 };
-  width: "320px",
-  margin: "0 auto",
-  display: "flex",
-  justifyContent: "space-between",
-};
 
 const shareWrap = {
-  width: "320px",
-  margin: "44px auto 30px",
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-};
   width: "320px",
   margin: "44px auto 30px",
   display: "flex",
@@ -299,12 +266,12 @@ const imgWrap = {
   borderBottom: "0.5px solid #F3F3F3",
 };
 
-const img = {
-  border: "1px solid #F3F3F3",
-  width: "76px",
-  height: "50px",
-  objectFit: "cover",
-};
+// const img = {
+//   border: "1px solid #F3F3F3",
+//   width: "76px",
+//   height: "50px",
+//   objectFit: "cover",
+// };
 
 const imgTitle = {
   display: "flex",
