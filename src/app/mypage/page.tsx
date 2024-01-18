@@ -14,7 +14,7 @@ import { getStorage, ref } from "firebase/storage";
 import Image from "next/image";
 import { Share, Underdog } from "next/font/google";
 import TitleStyle from "@/feature/mypage/titleStyle";
-import ShareHistory from "@/feature/mypage/button/historyBtn";
+import ShareHistory from "@/feature/mypage/button/shareHistoryTitle";
 import Setting from "@/feature/mypage/button/setting";
 import PostDelete from "@/feature/mypage/button/postDelete";
 import Back from "@/feature/mypage/button/back";
@@ -92,7 +92,7 @@ export default function mypage() {
           <div style={childWrap}>
             {shares.map((share, index) => {
               return (
-                <Link href={`/mypage/id${index}`}>
+                <Link href={`/mypage/share${index + 1}`}>
                   <div key={index} style={historyChild}>
                     <div style={imgWrap}>
                       {imageUrls[index] ? (
@@ -243,7 +243,7 @@ const categoryText = {
 const childWrap = {
   width: "100%",
   height: "300px",
-  paddingBottom: "120px",
+  paddingBottom: "50px",
   overflow: "scroll",
   // border: "1px solid tomato",
 };

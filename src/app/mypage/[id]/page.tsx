@@ -1,7 +1,16 @@
 "use client";
 
-import { db } from "@/firebase/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { db, storage } from "@/firebase/firebase";
+import {
+  DocumentData,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+} from "firebase/firestore";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 // export type Item = {
@@ -145,3 +154,127 @@ import { useEffect, useState } from "react";
 //   //     </>
 //   //   );
 // }
+
+export type Item = {
+  emotion: string;
+  selectedCategory: string;
+  title: string;
+};
+
+export default function shareZoom({ params }: { params: any }) {
+  const id = params.id;
+  const words = id.split("");
+  console.log(id[5], Number(id[5]));
+
+  const [shares, setShares] = useState<DocumentData[]>([]);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  //   const router = useRouter();
+  //   const { id } = router.query;
+  //   const [share, setShare] = useState(null);
+  //   const [imageUrl, setImageUrl] = useState("");
+  //   useEffect(() => {
+  //     const fetchShare = async () => {
+  //       const shareRef = doc(db, `share`, id);
+  //       const shareSnap = await getDoc(shareRef);
+  //       if (shareSnap.exists()) {
+  //         setShare(shareSnap.data());
+  //       }
+  //       const storage = getStorage();
+  //       const storageRef = ref(storage, `shareImg${id}`);
+  //       const url = await getDownloadURL(storageRef);
+  //       setImageUrl(url);
+  //     };
+  //     if (id) {
+  //       fetchShare();
+  //     }
+  //   }, [id]);
+  const [data, setData] = useState<Item>();
+
+  useEffect(() => {
+    const fetchShares = async () => {
+      //   const shareRef = collection(db, `share`, `share1`);
+      const shareRef = doc(db, "share", id);
+      const snapshot = await getDoc(shareRef);
+      //   console.log(snapshot.data().title);
+      if (snapshot.data() === undefined) {
+        console.log("no");
+      } else {
+        setData(snapshot.data());
+      }
+
+      // Firebase Storageから画像のURLを取得します
+      const storageRef = ref(storage, `shareImg${Number(id[5])}`);
+      const url = await getDownloadURL(storageRef);
+      //   // 取得したURLをステートに保存します
+      setImageUrls(url);
+
+      //   const sharesData = snapshot.docs.map((doc) => doc.data());
+      //   console.log(sharesData);
+      //   setShares(sharesData);
+
+      //   const urls = await Promise.all(
+      //     sharesData.map(async (_, index) => {
+      //       const storage = getStorage();
+      //       const storageRef = ref(storage, `shareImg${index + 1}`);
+      //       const url = await getDownloadURL(storageRef);
+      //       return url;
+      //     })
+      //   );
+      //   setImageUrls(urls);
+    };
+    fetchShares();
+  }, []);
+
+  //   return (
+  //     <div>
+  //       {share && (
+  //         <>
+  //           <h1>{share.title}</h1>
+  //           <p>{share.selectedCategory}</p>
+  //           <p>{share.emotion}</p>
+  //           {imageUrl && (
+  //             <Image src={imageUrl} alt="Uploaded" width={76} height={50} />
+  //           )}
+  //         </>
+  //       )}
+  //     </div>
+  //   );
+
+  return (
+    <>
+      {data === undefined ? <div>データなし</div> : <div>{data.title}</div>}
+      {imageUrls === undefined ? (
+        <div>データなし</div>
+      ) : (
+        <div>
+          <Image src={`${imageUrls}`} alt="写真" width={100} height={70} />
+        </div>
+      )}
+
+      {/* {shares.map((share, index) => {
+        return (
+          <div key={index}>
+            <div>
+              {imageUrls[index] ? (
+                <Image
+                  src={imageUrls[index]}
+                  alt="Uploaded"
+                  width={76}
+                  height={50}
+                  // style={img}
+                />
+              ) : (
+                <></>
+              )}
+            </div>
+            <p>{share.title}</p>
+            <div>
+              <p>{share.selectedCategory}</p>
+              <p>{share.emotion}</p>
+            </div>
+          </div>
+        );
+      })} */}
+    </>
+  );
+}
