@@ -14,8 +14,15 @@
 }
 body {
   border: solid 2px #ccc;
-  position: relative;
   width: 390px;
-  height: 100vh;
+  height: 734px;
   margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+main {
+  flex: 1;
+  height: 100%;
 }

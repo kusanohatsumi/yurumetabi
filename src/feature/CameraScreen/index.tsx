@@ -1,65 +1,68 @@
 "use client";
 
 import { CameraType } from "@/components/Camera/types";
-import Image from "next/image";
-import { type } from "os";
 import React, { useState, useRef } from "react";
-// import { Camera } from "react-camera-pro";
+import firebase from "firebase/app";
+import "firebase/storage";
+import "firebase/firestore";
+import "@/feature/CameraScreen/style.css";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { db, storage } from "@/firebase/firebase";
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
 
 export default function CameraScreen() {
-  const camera = useRef<CameraType>(null);
-  const [image, setImage] = useState<string | null>(null);
-  console.log(camera.current);
+  const [photograph, usePhotograph] = useState("");
+
+  const handleSubmit = async (photograph: string) => {
+    // FireStoreのデータベースからカウントの参照を取得します
+    const counterRef = doc(db, "counters", "shareCount");
+    // カウントのドキュメントを取得します
+    const counterSnap = await getDoc(counterRef);
+    // カウントのドキュメントが存在する場合はその値を取得し、存在しない場合は1を設定します
+    let shareCount = counterSnap.exists() ? counterSnap.data().count : 1;
+    // 'share'コレクション内に新しいドキュメントの参照を作成します
+    const userDocumentRef = doc(db, "share", `photograph${shareCount}`);
+
+    // 画像をCloud Storageにアップロードします
+    const imageRef = ref(storage, `images/photograph${shareCount}`);
+    await uploadString(imageRef, photograph, "data_url"); // uploadString関数を使用して画像をアップロードします
+    const imageUrl = await getDownloadURL(imageRef); // getDownloadURL関数を使用してダウンロードURLを取得します
+
+    // 新しいドキュメントを作成し、そのドキュメントに画像のURLを保存します
+    const documentRef = await setDoc(userDocumentRef, {
+      photograph: imageUrl,
+    });
+
+    window.location.href = "/share";
+  };
+
+  const handleFileChange = (e: any) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      if (typeof reader.result === "string") {
+        usePhotograph(reader.result);
+        handleSubmit(reader.result);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
 
   return (
     <>
-      <header>
-        <img src="" alt="" />
-      </header>
-      <main>
+      <section className="Camera">
         <div>
-          <Image
-            src="/image/flash.svg"
-            alt="フラッシュ"
-            width={25}
-            height={25}
+          <input
+            type="file"
+            capture="user"
+            onChange={handleFileChange}
+            accept=".jpg, .png, .gif"
           />
         </div>
-        <section>
-          <div className="w-full h-8">
-            {/* <Camera
-              errorMessages={{
-                noCameraAccessible:
-                  "No camera device accessible. Please connect your camera or try a different browser.",
-                permissionDenied:
-                  "Permission denied. Please refresh and give camera permission.",
-                switchCamera:
-                  "It is not possible to switch camera to different one because there is only one video device accessible.",
-                canvas: "Canvas is not supported.",
-              }}
-              ref={camera}
-            /> */}
-          </div>
-        </section>
-        <section>
-          <button
-            className="CameraBtn"
-            onClick={() => {
-              if (camera.current) {
-                const photo = camera.current.takePhoto();
-                setImage(photo);
-              }
-            }}
-          ></button>
-          <img src="" alt="" />
-          <p>おすすめスポットを共有しましょう</p>
-        </section>
-        <footer>
-          <div className="w-full h-16 bg-slate-200 text-center absolute bottom-0">
-            PR
-          </div>
-        </footer>
-      </main>
+      </section>
+      <section className="footer">
+        <p>おすすめスポットを共有しましょう</p>
+      </section>
     </>
   );
 }
