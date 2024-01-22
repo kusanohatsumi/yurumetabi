@@ -6,7 +6,7 @@ export default function Menu() {
   return (
     <div
       className="w-full flex gap-14 justify-center items-end text-xs h-16 rounded-t-lg absolute bottom-0"
-      style={{ backgroundColor: sub }}
+      style={{ backgroundColor: "#F4DCB3" }}
     >
       <Link
         className="h-full flex flex-col justify-center items-center relative after:content-['share'] after:absolute after:bottom-1 after:text-2xl after:text-white"
