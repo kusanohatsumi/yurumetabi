@@ -29,6 +29,7 @@ import {
 } from "@/style/color";
 import { getDownloadURL } from "firebase/storage";
 import Link from "next/link";
+import { log } from "console";
 
 export default function mypage() {
   const [shares, setShares] = useState<DocumentData[]>([]);
@@ -87,12 +88,13 @@ export default function mypage() {
           <div style={childWrap}>
             {shares.map((share, index) => {
               return (
-                <Link href={`/mypage/share${index + 1}`}>
+                // <Image src={`${imageUrls}`} alt="写真" width={100} height={70} />
+                <Link href={`/mypage/share${index + 1}`} key={index}>
                   <div key={index} style={historyChild}>
                     <div style={imgWrap}>
                       {imageUrls[index] ? (
                         <Image
-                          src={imageUrls[index]}
+                          src={`${imageUrls[index]}`}
                           alt="Uploaded"
                           width={0}
                           height={0}
@@ -243,8 +245,8 @@ const categoryText = {
 
 const childWrap = {
   width: "100%",
-  height: "300px",
-  paddingBottom: "50px",
+  height: "280px",
+  paddingBottom: "100px",
   overflow: "scroll",
   // border: "1px solid tomato",
 };

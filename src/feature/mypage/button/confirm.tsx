@@ -1,15 +1,44 @@
+import { db } from "@/firebase/firebase";
 import { category_co, confirm } from "@/style/color";
+import { DocumentData, deleteDoc, doc } from "firebase/firestore";
+import { deleteObject, getStorage, ref } from "firebase/storage";
 import Link from "next/link";
+import { useState } from "react";
 
-export default function ConfirmBtn() {
+export default function ConfirmBtn({ params }: { params: any }, props: any) {
+  const id = params.no;
+  console.log(props);
+
+  const [showConfirmBtnWrap, setShowConfirmBtnWrap] = useState(true);
+  const storage = getStorage();
+
+  function deleteImg() {
+    const desertRef = ref(storage, `shareImg${Number(id[5])}`);
+    // ファイルを削除する
+    deleteObject(desertRef)
+      .then(() => {
+        // ファイルの削除に成功しました
+      })
+      .catch((error) => {
+        // ファイルの削除中にエラーが発生しました
+      });
+  }
+  // const [shares, setShares] = useState<DocumentData[]>([]);
   return (
     <>
       <Link href="/mypage/confirm">
-        <button style={confirmBtn}>YES</button>
+        <button
+          style={confirmBtn}
+          onClick={async () =>
+            await deleteDoc(doc(db, "share", props.paramItem))
+          }
+        >
+          YES
+        </button>
       </Link>
-      <Link href="/mypage/zoom">
-        <button style={confirmBtn}>NO</button>
-      </Link>
+      <button style={confirmBtn} onClick={() => props.no(false)}>
+        NO
+      </button>
     </>
   );
 }
