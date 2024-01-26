@@ -1,21 +1,19 @@
-import CameraScreen from "@/feature/CameraScreen";
-import CategoryBtn from "@/feature/CategoryBtn";
-import Header_main from "@/feature/header";
-import Menu from "@/feature/menu";
-import Category from "@/feature/mypage/category";
-import Mypage from "@/feature/mypage/category";
-import TitleStyle from "@/feature/mypage/titleStyle";
-import PhotoConfirmation from "@/feature/PhotoConfirmation";
-import PhotoTaken from "@/feature/PhotoTaken";
-
-import PR from "@/feature/PR";
+"use client";
+import Map from "@/feature/googlemap";
+import Input from "@/feature/googlemap/input";
+import MapWithCurrentLocation from "@/feature/googlemap/location";
+import MapWithDirections from "@/feature/googlemap/walking";
 
 export default function Home() {
   return (
     <>
-      <main>
-        ここに地図を描画する
-      </main>
+      <div>
+        {/* <Map /> */}
+        {/* <Input /> */}
+        {/* <MapWithCurrentLocation /> */}
+        <MapWithDirections />
+        {/* <MapWithDirections /> */}
+      </div>
     </>
   );
 }
