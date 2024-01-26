@@ -17,23 +17,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const googleMapsApiKey = process.env.NEXT_PUBLIC_GMAPS_API_KEY;
   return (
     <html lang="ja">
-      {/* <Head>
-        {googleMapsApiKey && (
-          <script
-            async
-            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&callback=console.debug&libraries=maps,marker&v=beta"
-          />
-        )}
-      </Head> */}
       <body>
         <Header_main params="main" />
-        <main className="relative">
-          {children}
-          <Menu />
-        </main>
+        <main className="relative overflow-hidden">{children}</main>
         <PR />
       </body>
     </html>

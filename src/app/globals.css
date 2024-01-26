@@ -26,3 +26,11 @@ main {
   flex: 1;
   height: 100%;
 }
+
+.map-menu {
+  background-color: #f4dcb3;
+}
+.destination-reactive {
+  /* transform: translateY("240px"); */
+  bottom: -240px;
+}
