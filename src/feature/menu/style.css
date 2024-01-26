@@ -1,0 +1,41 @@
+.shareBtn{
+    width: 34px;
+    height: 34px;
+    background: url(../../../public/image/camera.svg) no-repeat;
+    display: inline-block;
+}
+
+.shareBtn input{
+    display: none;
+}
+
+.percent{
+    text-align: center;
+    font-size: 16px;
+    color: #E5B65A;
+}
+
+progress[value] {
+    /* これはFirefoxのためのルールです */
+    -moz-appearance: none;
+    /* これはChromeのためのルールです */
+    -webkit-appearance: none;
+    appearance: none;
+    /* ここでゲージの幅と高さを設定します */
+    width: 250px;
+    height: 20px;
+}
+progress[value]::-webkit-progress-bar {
+    /* これはChromeのためのルールで、ゲージの背景色を設定します */
+    background-color: #eee;
+}
+progress[value]::-webkit-progress-value {
+    /* これはChromeのためのルールで、ゲージの色を設定します */
+    background-color: #E5B65A;
+}
+
+.upload{
+    text-align: center;
+    font-size: 12px;
+    color: #E5B65A;
+}
