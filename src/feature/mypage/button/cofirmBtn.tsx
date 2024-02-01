@@ -18,7 +18,7 @@ export default function ConfirmBtnWrap(props: any) {
 
   return (
     <>
-      <main style={mainWrap}>
+      <main style={mainWrap} className="absolute">
         {/* <Header_main params="main" /> */}
         {/* 中崎町の町並み */}
         <section style={deleteWrap}>
@@ -45,7 +45,7 @@ const mainWrap = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  position: "absolute",
+  position: "absolute" as "absolute",
   top: "50%",
   left: "50%",
   transform: " translate(-50%,-50%)",
@@ -72,15 +72,15 @@ const deleteTitle = {
 
 const subText = {
   fontSize: "10px",
-  textAlign: "center",
   color: warning_text,
+  textAlign: "center" as const,
 };
 
 const mainText = {
   fontSize: "24px",
   color: confirm,
   padding: "10px 0 14px",
-  textAlign: "center",
+  textAlign: "center" as const,
 };
 
 const conBtn = {

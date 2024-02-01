@@ -121,7 +121,7 @@ const btnWrap = {
 // };
 
 export function Album(props: any) {
-  console.log(props);
+  // console.log(props);
 
   return (
     <>

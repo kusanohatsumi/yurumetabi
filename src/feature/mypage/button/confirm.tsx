@@ -1,42 +1,73 @@
 import { db } from "@/firebase/firebase";
 import { category_co, confirm } from "@/style/color";
-import { DocumentData, deleteDoc, doc } from "firebase/firestore";
+import { DocumentData, deleteDoc, doc, getDoc } from "firebase/firestore";
 import { deleteObject, getStorage, ref } from "firebase/storage";
 import Link from "next/link";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 
-export default function ConfirmBtn({ params }: { params: any }, props: any) {
-  const id = params.no;
-  console.log(props);
+export default function ConfirmBtn(params: any, props: any) {
+  // const id = params.id;
 
+  // const words = id.split("");
+  // console.log(words[2]);
+
+  // console.log(props);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const shareRef = doc(db, "share", props.paramItem);
+  //     const snapshot = await getDoc(shareRef);
+  //     if (snapshot.data() !== undefined) {
+  //       console.log(snapshot.data());
+  //     }
+  //     // Firebase Storageから画像のURLを取得します
+  //     // const storageRef = ref(storage, `shareImg${Number(words[5])}`);
+  //     // const url = await getDownloadURL(storageRef);
+  //     // //   // 取得したURLをステートに保存します
+  //     // setImageUrls(url);
+  //   };
+  //   getData();
+  // }, []);
+
+  const [state, setState] = useState(false);
   const [showConfirmBtnWrap, setShowConfirmBtnWrap] = useState(true);
   const storage = getStorage();
-
-  function deleteImg() {
-    const desertRef = ref(storage, `shareImg${Number(id[5])}`);
-    // ファイルを削除する
-    deleteObject(desertRef)
-      .then(() => {
-        // ファイルの削除に成功しました
-      })
-      .catch((error) => {
-        // ファイルの削除中にエラーが発生しました
-      });
-  }
   // const [shares, setShares] = useState<DocumentData[]>([]);
+
+  const desertRef = ref(storage, `shareImg${Number}`);
+  // const desertRef = ref(storage, `shareImg,${Number(props.paramItem)}`);
+
   return (
     <>
       <Link href="/mypage/confirm">
-        <button
+        {/* <button
           style={confirmBtn}
           onClick={async () =>
             await deleteDoc(doc(db, "share", props.paramItem))
           }
+        > */}
+        <button
+          style={confirmBtn}
+          onClick={async () => {
+            try {
+              await deleteObject(desertRef);
+              await deleteDoc(doc(db, "share", props.paramItem));
+              // ファイルが正常に削除されました
+            } catch (error) {
+              // エラーが発生しました
+            }
+          }}
         >
           YES
         </button>
       </Link>
       <button style={confirmBtn} onClick={() => props.no(false)}>
+        {/* <button
+        style={confirmBtn}
+        onClick={() => {
+          props.no(false);
+        }}
+      > */}
         NO
       </button>
     </>

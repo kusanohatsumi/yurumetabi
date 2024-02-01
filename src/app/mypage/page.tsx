@@ -54,6 +54,7 @@ export default function mypage() {
       setImageUrls(urls);
     };
     fetchShares();
+    console.log(imageUrls);
   }, []);
 
   return (
@@ -247,7 +248,7 @@ const childWrap = {
   width: "100%",
   height: "280px",
   paddingBottom: "100px",
-  overflow: "scroll",
+  overflow: "auto",
   // border: "1px solid tomato",
 };
 
