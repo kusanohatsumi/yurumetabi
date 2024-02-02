@@ -263,7 +263,7 @@ export default function Menu(props: any) {
           </button>
           <Link
             className="h-full flex flex-col justify-center items-center relative after:content-['mypage'] after:absolute after:bottom-1 after:text-2xl after:text-white"
-            href="/#"
+            href="/mypage"
           >
             <Image
               alt="人のシルエットアイコン"
