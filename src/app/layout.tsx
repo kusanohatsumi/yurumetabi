@@ -5,6 +5,8 @@ import { Inter } from "next/font/google";
 import PR from "@/feature/PR";
 import Menu from "@/feature/menu";
 import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,6 +19,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const googleMapsApiKey = process.env.NEXT_PUBLIC_GMAPS_API_KEY;
   return (
     <html lang="ja">
       <body>
