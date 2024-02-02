@@ -1,3 +1,4 @@
+
 "use client"
 
 import "@/app/share/PhotoConfirmation/style.css"
@@ -10,7 +11,24 @@ import { getDownloadURL, ref } from "firebase/storage"
 
 
 
+import PR from "@/feature/PR";
+import Header_main from "@/feature/header";
+import "@/app/share/PhotoConfirmation/style.css";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import {
+  DocumentData,
+  collection,
+  setDoc,
+  doc,
+  getDocs,
+  getDoc,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "@/firebase/firebase";
+
 export default function PhotoConfirmation() {
+
     // 'shares'という名前のstateを作成し、初期値を空の配列に設定します
     const [ shares, setShares ] = useState<DocumentData[]>([]);
     const [imageUrl, setImageUrl] = useState("");
@@ -62,34 +80,36 @@ export default function PhotoConfirmation() {
         });
       }, []);  // 依存配列が空なので、このuseEffectフックはコンポーネントがマウントされたときに一度だけ実行されます
 
-    async function bakBoth(e:any) {
-        e.preventDefault();
-        // FireStoreのデータベースからカウントの参照を取得します
-        const counterRef = doc(db, 'counters', 'shareCount');
-        // カウントのドキュメントを取得します
-        let counterSnap = await getDoc(counterRef);
-        // カウントのドキュメントが存在する場合はその値を取得し、存在しない場合は1を設定します
-        let shareCount = counterSnap.exists() ? counterSnap.data().count : 1;
-        // カウントの値が1の場合、カウントのドキュメントを削除します
-        if (shareCount === 1) {
-            await deleteDoc(counterRef);
-            console.log("'shareCount' document has been deleted.");
-        } else if (shareCount > 1) {
-            // カウントの値が1より大きい場合、カウントをデクリメントします
-            shareCount--;
-            await setDoc(counterRef, { count: shareCount });
-            // 対応するドキュメントを削除します
-            const userDocumentRef = doc(db, 'share', `share${shareCount}`);
-            await deleteDoc(userDocumentRef);
-        }               
-        window.location.href = "/share";
-    }
 
-    async function handleBoth(e:any) {
-        e.preventDefault();
-
-        window.location.href = "/share/PhotoConfirmation/shareCompletion";
+  async function bakBoth(e: any) {
+    e.preventDefault();
+    // FireStoreのデータベースからカウントの参照を取得します
+    const counterRef = doc(db, "counters", "shareCount");
+    // カウントのドキュメントを取得します
+    let counterSnap = await getDoc(counterRef);
+    // カウントのドキュメントが存在する場合はその値を取得し、存在しない場合は1を設定します
+    let shareCount = counterSnap.exists() ? counterSnap.data().count : 1;
+    // カウントの値が1の場合、カウントのドキュメントを削除します
+    if (shareCount === 1) {
+      await deleteDoc(counterRef);
+      console.log("'shareCount' document has been deleted.");
+    } else if (shareCount > 1) {
+      // カウントの値が1より大きい場合、カウントをデクリメントします
+      shareCount--;
+      await setDoc(counterRef, { count: shareCount });
+      // 対応するドキュメントを削除します
+      const userDocumentRef = doc(db, "share", `share${shareCount}`);
+      await deleteDoc(userDocumentRef);
     }
+    window.location.href = "/share";
+  }
+
+  async function handleBoth(e: any) {
+    e.preventDefault();
+
+    window.location.href = "/share/PhotoConfirmation/shareCompletion";
+  }
+
 
     
     return(
@@ -133,4 +153,5 @@ export default function PhotoConfirmation() {
             </section>
         </>
     )
+
 }

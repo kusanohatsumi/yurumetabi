@@ -5,6 +5,8 @@ import { Inter } from "next/font/google";
 import PR from "@/feature/PR";
 import Menu from "@/feature/menu";
 import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,20 +22,9 @@ export default function RootLayout({
   const googleMapsApiKey = process.env.NEXT_PUBLIC_GMAPS_API_KEY;
   return (
     <html lang="ja">
-      {/* <Head>
-        {googleMapsApiKey && (
-          <script
-            async
-            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&callback=console.debug&libraries=maps,marker&v=beta"
-          />
-        )}
-      </Head> */}
       <body>
         <Header_main params="main" />
-        <main className="relative">
-          {children}
-          <Menu />
-        </main>
+        <main className="relative overflow-hidden">{children}</main>
         <PR />
       </body>
     </html>
