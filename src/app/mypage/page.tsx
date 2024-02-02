@@ -1,14 +1,20 @@
 "use client";
-import { collection, where, getDocs, query, doc } from "firebase/firestore";
-import { db } from "@/firebase/firebase";
-import { useEffect } from "react";
-import GetDoc from "@/feature/mypage/userItem";
+// import GetDoc from "@/feature/mypage/userItem";
+import { useEffect, useState } from "react";
+import {
+  collection,
+  DocumentData,
+  getDoc,
+  getDocs,
+  query,
+} from "firebase/firestore";
+import { db, storage } from "@/firebase/firebase";
+import { getStorage, ref } from "firebase/storage";
 
 import Image from "next/image";
-import { Underdog } from "next/font/google";
-import Link from "next/link";
+import { Share, Underdog } from "next/font/google";
 import TitleStyle from "@/feature/mypage/titleStyle";
-import ShareHistory from "@/feature/mypage/button/historyBtn";
+import ShareHistory from "@/feature/mypage/button/shareHistoryTitle";
 import Setting from "@/feature/mypage/button/setting";
 import PostDelete from "@/feature/mypage/button/postDelete";
 import Back from "@/feature/mypage/button/back";
@@ -21,84 +27,102 @@ import {
   history_wrap,
   mypage_text,
 } from "@/style/color";
-import Header from "@/feature/header/header";
-import Header_main from "@/feature/header";
-import PR from "@/feature/PR";
+import { getDownloadURL } from "firebase/storage";
+import Link from "next/link";
+import { log } from "console";
 
-export default async function mypage() {
+export default function mypage() {
+  const [shares, setShares] = useState<DocumentData[]>([]);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchShares = async () => {
+      const shareRef = collection(db, `share`);
+      const snapshot = await getDocs(shareRef);
+      const sharesData = snapshot.docs.map((doc) => doc.data());
+      console.log(sharesData);
+      setShares(sharesData);
+
+      const urls = await Promise.all(
+        sharesData.map(async (_, index) => {
+          const storage = getStorage();
+          const storageRef = ref(storage, `shareImg${index + 1}`);
+          const url = await getDownloadURL(storageRef);
+          return url;
+        })
+      );
+      setImageUrls(urls);
+    };
+    fetchShares();
+    console.log(imageUrls);
+  }, []);
+
   return (
     <>
-      <div style={mypageTitle}>
-        <TitleStyle />
-        <h1 style={accountName}>アカウント名</h1>
-        <h2>年齢</h2>
-        <h2>性別</h2>
-      </div>
-
-      <div style={signDate}>
-        <p style={accountDate}>アカウント登録日</p>
-        <Setting />
-      </div>
-
-      <div style={shareWrap}>
-        <ShareHistory />
-        <p style={shareText}>タップすると画像全体をみることができます</p>
-      </div>
-
-      <section style={historyWrap}>
-        <div style={historyTitle}>
-          <p style={titleText}>撮影写真</p>
-          <p style={titleText}>写真タイトル</p>
-          <p style={titleText}>カテゴリー</p>
+      <main style={mainWrap}>
+        {/* <Header_main params="main" /> */}
+        <div style={mypageTitle}>
+          <TitleStyle />
+          <h1 style={accountName}>アカウント名</h1>
+          <h2>年齢</h2>
+          <h2>性別</h2>
         </div>
 
-        <div style={childWrap}>
-          <div style={historyChild}>
-            <Image
-              src="/image/city.svg"
-              alt=""
-              width={76}
-              height={50}
-              style={img}
-            />
-            <p style={imgTitle}>中崎町の町並み</p>
-            <div style={category}>
-              <p>街並み</p>
-              <p>レトロ</p>
-            </div>
-          </div>
-          <div style={historyChild}>
-            <Image
-              src="/image/city.svg"
-              alt=""
-              width={76}
-              height={50}
-              style={img}
-            />
-            <p style={imgTitle}>中崎町の町並み</p>
-            <div style={category}>
-              <p>街並み</p>
-              <p>レトロ</p>
-            </div>
-          </div>
-          <div style={historyChild}>
-            <Image
-              src="/image/city.svg"
-              alt=""
-              width={76}
-              height={50}
-              style={img}
-            />
-            <p style={imgTitle}>中崎町の町並み</p>
-            <div style={category}>
-              <p>街並み</p>
-              <p>レトロ</p>
-            </div>
-          </div>
+        <div style={signDate}>
+          <p style={accountDate}>アカウント登録日</p>
+          <Setting />
         </div>
-      </section>
 
-      {/* {userData === undefined ? (
+        <div style={shareWrap}>
+          <ShareHistory />
+          <p style={shareText}>タップすると画像全体をみることができます</p>
+        </div>
+
+        <section style={historyWrap}>
+          {/* タイトル*/}
+          <div style={titleWrap}>
+            <p style={imgText}>撮影写真</p>
+            <p style={imgTitleText}>写真タイトル</p>
+            <p style={categoryText}>カテゴリー</p>
+          </div>
+          {/* データ */}
+          <div style={childWrap}>
+            {shares.map((share, index) => {
+              return (
+                // <Image src={`${imageUrls}`} alt="写真" width={100} height={70} />
+                <Link href={`/mypage/share${index + 1}`} key={index}>
+                  <div key={index} style={historyChild}>
+                    <div style={imgWrap}>
+                      {imageUrls[index] ? (
+                        <Image
+                          src={`${imageUrls[index]}`}
+                          alt="Uploaded"
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          style={{
+                            border: "1px solid #F3F3F3",
+                            width: "76px",
+                            height: "50px",
+                            objectFit: "cover",
+                          }}
+                        />
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                    <p style={imgTitle}>{share.title}</p>
+                    <div style={category}>
+                      <p>{share.selectedCategory}</p>
+                      <p>{share.emotion}</p>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+        {/* {userData === undefined ? (
                 console.log("データがありません")
                 ) : (
             <div>
@@ -107,7 +131,7 @@ export default async function mypage() {
                 <p>カテゴリー：{userData.item01.tag.place}</p>
             </div>
         )} */}
-      {/* {querySnapshot.map((doc: any) => {
+        {/* {querySnapshot.map((doc: any) => {
             <div>
                 <p>画像：{userData..img.alt}, {userData.item01.img.src}</p>
                 <p>タイトル：{userData.item01.title}</p>
@@ -116,11 +140,8 @@ export default async function mypage() {
         })}
         <GetDoc /> */}
 
-      {/* <div className="list">
-                    <Link href="/mypage/item01">01</Link>
-                    <Link href="/mypage/item02">02</Link>
-                    <Link href="/mypage/item03">03</Link>
-                </div> */}
+        {/* <PR /> */}
+      </main>
     </>
   );
 }
@@ -169,69 +190,113 @@ const shareText = {
   color: mypage_text,
 };
 
-const titleText = {
-  color: mypage_text,
-};
-
 const historyWrap = {
   width: "100%",
   height: "320px",
   backgroundColor: history_wrap,
   border: "1px solid #F3F3F3",
+  // display: "grid",
+  // gridTemplateColumns: "8% 28% 28% 28% 8%",
+  // gridTemplateRows: "30px repeat(3,76px)",
 };
 
-const historyTitle = {
+const titleWrap = {
   width: "100%",
   height: "30px",
-  padding: "0 60px",
-  border: "1px solid #F3F3F3",
+  // border: "1px solid #F3F3F3",
+  backgroundColor: categoryTitle,
+  // display: "flex",
+  // justifyContent: "space-between",
+  // alignItems: "center",
+  display: "grid",
+  gridTemplateColumns: "8% 28% 28% 28% 8%",
+  gridTemplateRows: "30px",
+  fontSize: "12px",
+  color: mypage_text,
+};
+
+const imgText = {
+  gridColumn: "2/3",
+  gridRow: "1/2",
+  fontSize: "12px",
+  color: mypage_text,
   backgroundColor: categoryTitle,
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "center",
   alignItems: "center",
-  fontSize: "12px",
+};
+
+const imgTitleText = {
+  gridColumn: "3/4",
+  gridRow: "1/2",
+  backgroundColor: categoryTitle,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
+
+const categoryText = {
+  gridColumn: "4/5",
+  gridRow: "1/2",
+  backgroundColor: categoryTitle,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 };
 
 const childWrap = {
-  // display: "grid",
-  // gridTemplateColumns: "110px 100px 110px",
-  // gridTemplateRows: "76px 76px 76px",
-  // justifyItems: "center",
-  // gridTemplateAreas: "img imgTitle category",
-  // gridTemplateAreas: '"img imgTitle category" "img imgTitle category" "img imgTitle category"',
-  width: "320px",
-  border: "1px solid tomato",
+  width: "100%",
+  height: "280px",
+  paddingBottom: "100px",
+  overflow: "auto",
+  // border: "1px solid tomato",
 };
 
 const historyChild = {
-  width: "320px",
+  width: "100%",
   height: "76px",
-  margin: "0 auto",
-  borderBottom: "0.5px solid #F3F3F3",
-  color: category_co,
-  display: "flex",
-  justifyContent: "space-around",
+  display: "grid",
+  gridTemplateColumns: "8% 28% 28% 28% 8%",
+  gridTemplateRows: "76px",
 };
 
-const img = {
-  // gridAreas: "img",
-  // border: "1px solid tomato",
-  // gridColumn: "1/2",
-  // gridRow: "1/2",
+const imgWrap = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gridColumn: "2/3",
+  gridRow: "1/2",
+  borderBottom: "0.5px solid #F3F3F3",
 };
+
+// const img = {
+//   border: "1px solid #F3F3F3",
+//   width: "76px",
+//   height: "50px",
+//   objectFit: "cover",
+// };
 
 const imgTitle = {
-  // gridAreas: "imgTitle",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   fontSize: "12px",
+  color: category_co,
+  gridColumn: "3/4",
+  gridRow: "1/2",
+  borderBottom: "0.5px solid #F3F3F3",
   // border: "1px solid tomato",
-  // gridColumn: "2/3",
-  // gridRow: "1/2",
 };
 
 const category = {
-  // gridAreas: "category",
+  display: "flex",
+  flexFlow: "column",
+  justifyContent: "center",
+  alignItems: "center",
   fontSize: "12px",
+  color: category_co,
+  gridColumn: "4/5",
+  gridRow: "1/2",
+  borderBottom: "0.5px solid #F3F3F3",
   // border: "1px solid tomato",
-  // gridColumn: "3/4",
-  // gridRow: "1/2",
 };
